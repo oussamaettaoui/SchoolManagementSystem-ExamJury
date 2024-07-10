@@ -1,28 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<TargetFramework>net8.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Brokers\" />
-    <Folder Include="Features\JuryMemberFeature\Command\Commands\" />
-    <Folder Include="Features\JuryMemberFeature\Command\Handlers\" />
-    <Folder Include="Features\JuryMemberFeature\Command\Validators\" />
-    <Folder Include="Features\JuryMemberFeature\Query\Handlers\" />
-    <Folder Include="Features\JuryMemberFeature\Query\Validators\" />
-    <Folder Include="Features\JuryMemberFeature\Query\Queries\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="IServices\" />
-    <Folder Include="Services\" />
+	<Folder Include="Brokers\" />
+	<Folder Include="Features\JuryMemberFeature\Query\Handlers\" />
+	<Folder Include="Features\JuryMemberFeature\Query\Validators\" />
+	<Folder Include="Features\JuryMemberFeature\Query\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="MediatR" Version="12.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+	<PackageReference Include="FluentValidation" Version="11.9.2" />
+	  <PackageReference Include="AutoMapper" Version="13.0.1" />
+	  <PackageReference Include="MediatR" Version="12.3.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+	  <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\SchoolManagementSystem.Domain\SchoolManagementSystem.Domain.csproj" />
   </ItemGroup>
 
 </Project>

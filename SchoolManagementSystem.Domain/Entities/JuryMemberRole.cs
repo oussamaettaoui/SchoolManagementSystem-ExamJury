@@ -2,8 +2,8 @@
 {
     public enum JuryMemberRole
     {
-        President,
-        ExternMember,
-        Trainer
+        President = 0,
+        ExternMember = 1,
+        Trainer = 2
     }
 }

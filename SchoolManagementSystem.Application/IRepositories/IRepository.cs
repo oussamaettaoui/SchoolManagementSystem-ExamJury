@@ -4,9 +4,10 @@ namespace SchoolManagementSystem.Application.IRepositories
 {
     public interface IRepository<T> where T : class
     {
-        IQueryable<T> GetAsNoTracking();
-        IQueryable<T> GetAsTracking();
-        Task<T> GetAsync(Expression<Func<T, bool>> filter);
+        Task<List<T>> GetAllAsNoTracking(Expression<Func<T, bool>>? filter = null);
+        Task<T> GetAsNoTracking(Expression<Func<T, bool>> filter);
+        Task<List<T>> GetAllAsTracking(Expression<Func<T, bool>>? filter = null);
+        Task<T> GetAsTracking(Expression<Func<T, bool>> filter);
         Task CreateRangeAsync(ICollection<T> entities);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);

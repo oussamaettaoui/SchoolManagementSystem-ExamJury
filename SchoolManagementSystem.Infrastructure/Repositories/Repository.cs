@@ -15,17 +15,45 @@ namespace SchoolManagementSystem.Infrastructure.Repositories
         public Repository(AppDbContext db)
         {
             _db = db;
-            this.dbSet = db.Set<T>();
+            this.dbSet = _db.Set<T>();
         }
         #endregion
         #region Methods
-        public IQueryable<T> GetAsNoTracking()
+        public async Task<List<T>> GetAllAsNoTracking(Expression<Func<T, bool>>? filter = null)
         {
-            return dbSet.AsNoTracking();
+            IQueryable<T> query = dbSet.AsNoTracking();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            return await query.ToListAsync();
         }
-        public IQueryable<T> GetAsTracking()
+        public async Task<T> GetAsNoTracking(Expression<Func<T, bool>> filter = null)
         {
-            return dbSet.AsTracking();
+            IQueryable<T> query = dbSet.AsNoTracking();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            return await query.FirstOrDefaultAsync();
+        }
+        public async Task<List<T>> GetAllAsTracking(Expression<Func<T, bool>>? filter = null)
+        {
+            IQueryable<T> query = dbSet.AsTracking();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            return await query.ToListAsync();
+        }
+        public async Task<T> GetAsTracking(Expression<Func<T, bool>> filter = null)
+        {
+            IQueryable<T> query = dbSet.AsTracking();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            return await query.FirstOrDefaultAsync();
         }
         public async Task CreateRangeAsync(ICollection<T> entities)
         {
