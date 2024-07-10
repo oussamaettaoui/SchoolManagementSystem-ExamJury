@@ -37,7 +37,7 @@ namespace SchoolManagementSystem.Application.Services
             return jury;
         }
         // to add a new JuryMember
-        public async Task<string> AddJuryMemberAsync(JuryMember juryMember,IFormFile ImgFile, int role)
+        public async Task<string> AddJuryMemberAsync(JuryMember juryMember,IFormFile ImgFile)
         {
             try
             {
@@ -46,8 +46,6 @@ namespace SchoolManagementSystem.Application.Services
                 string juryImg = await _fileService.UploadFile(ImgFile);
                 juryMember.Id = Guid.NewGuid();
                 juryMember.ProfileImg = baseurl + juryImg;
-                juryMember.Role = (JuryMemberRole)role;
-                
                 await _uow.JuryMemberRepository.CreateAsync(juryMember);
                 await _uow.CommitAsync();
                 return "Success";
@@ -58,7 +56,7 @@ namespace SchoolManagementSystem.Application.Services
             }
         }
         // to edit a specific JuryMember
-        public async Task<string> EditJuryMemberAsync(JuryMember juryMember, IFormFile ImgFile, int Role)
+        public async Task<string> EditJuryMemberAsync(JuryMember juryMember, IFormFile ImgFile)
         {
             try
             {

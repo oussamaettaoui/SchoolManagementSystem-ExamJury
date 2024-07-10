@@ -23,7 +23,7 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
                 return "Freelance Not Found";
             }
             _mapper.Map(request, juryMember);
-            string result = await _uos.JuryMemberService.EditJuryMemberAsync(juryMember, request.ImgFile, request.Role);
+            string result = await _uos.JuryMemberService.EditJuryMemberAsync(juryMember, request.ImgFile);
             if (result == "Success")
             {
                 return "Jury Member Updated Successfully";
