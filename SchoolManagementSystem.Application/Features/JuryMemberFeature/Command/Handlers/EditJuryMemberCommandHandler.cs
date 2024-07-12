@@ -17,13 +17,13 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
         }
         public async Task<string> Handle(EditJuryMemberCommand request, CancellationToken cancellationToken)
         {
-            JuryMember juryMember = await _uos.JuryMemberService.GetJuryMemberByIdAsync(request.JuryMemberId);
+            JuryMember juryMember = await _uos.MeetingService.GetJuryMemberByIdAsync(request.JuryMemberId);
             if (juryMember == null)
             {
-                return "Freelance Not Found";
+                return "Jury Member Not Found";
             }
             _mapper.Map(request, juryMember);
-            string result = await _uos.JuryMemberService.EditJuryMemberAsync(juryMember, request.ImgFile, request.Role);
+            string result = await _uos.MeetingService.EditJuryMemberAsync(juryMember, request.ImgFile, request.Role);
             if (result == "Success")
             {
                 return "Jury Member Updated Successfully";

@@ -8,9 +8,7 @@
 
   <ItemGroup>
 	<Folder Include="Brokers\" />
-	<Folder Include="Features\JuryMemberFeature\Query\Handlers\" />
 	<Folder Include="Features\JuryMemberFeature\Query\Validators\" />
-	<Folder Include="Features\JuryMemberFeature\Query\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

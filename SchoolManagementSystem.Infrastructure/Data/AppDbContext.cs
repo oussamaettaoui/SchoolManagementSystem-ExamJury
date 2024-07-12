@@ -8,12 +8,21 @@ namespace SchoolManagementSystem.Infrastructure.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
         public DbSet<Jury> Juries { get; set; }
         public DbSet<JuryMember> JuryMembers { get; set; }
+        public DbSet<Meeting> Meeting { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<JuryMember>(jm =>
             {
                 jm.HasKey(x => x.Id);
+            });
+            modelBuilder.Entity<Meeting>(m =>
+            {
+                m.HasKey(meeting => meeting.Id);
+
+                m.HasOne(meeting => meeting.Jury)
+                    .WithOne(jury => jury.Meeting)
+                    .HasForeignKey<Meeting>(meeting => meeting.JuryId);
             });
             modelBuilder.Entity<Jury>(j => {
                 j.HasKey(x=>x.Id);

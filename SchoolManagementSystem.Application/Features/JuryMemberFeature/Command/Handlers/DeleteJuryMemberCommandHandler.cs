@@ -16,8 +16,8 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
         {
             try
             {
-                JuryMember juryMember = await _uos.JuryMemberService.GetJuryMemberByIdAsync(request.JuryMemberId);
-                string result = await _uos.JuryMemberService.DeleteJuryMemberAsync(juryMember);
+                JuryMember juryMember = await _uos.MeetingService.GetJuryMemberByIdAsync(request.JuryMemberId);
+                string result = await _uos.MeetingService.DeleteJuryMemberAsync(juryMember);
                 if (result == "Success")
                 {
                     return "Jury Member Deleted Successfully";
