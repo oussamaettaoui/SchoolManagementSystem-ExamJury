@@ -25,8 +25,16 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Query.Ha
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 throw new Exception("Error Handler : " + ex.ToString());
             }
         }
     }
 }
+=======
+                throw new Exception("Error Handler : "+ex.ToString());
+            }
+        }
+    }
+}
+>>>>>>> 12cac6bedaf3967337d569e66dfe177cae7333cc

@@ -1,19 +1,17 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
-using SchoolManagementSystem.Domain.Entities;
+﻿using SchoolManagementSystem.Domain.Entities;
 
-namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Commands
+namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
 {
-    public class AddJuryMemberCommand : IRequest<string>
+    public class JuryMemberDto
     {
+        public Guid JuryMemberId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
         public string? CompanyName { get; set; }
         public int YearOfExperience { get; set; }
         public string? LatestDiploma { get; set; }
+        public string? ProfileImg { get; set; }
         public JuryMemberRole Role { get; set; }
-        public  Guid JuryId { get; set; }
-        public IFormFile? ImgFile { get; set; }
     }
 }

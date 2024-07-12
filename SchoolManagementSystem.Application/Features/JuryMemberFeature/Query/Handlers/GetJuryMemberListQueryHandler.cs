@@ -7,11 +7,19 @@ using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Query.Handlers
 {
+<<<<<<< HEAD
     public class GetJuryMemberListQueryHandler : IRequestHandler<GetJuryMemberListQuery, List<JuryMemberDto>>
     {
         private readonly IUnitOfService _uos;
         private readonly IMapper _mapper;
         public GetJuryMemberListQueryHandler(IUnitOfService uos, IMapper mapper)
+=======
+    public class GetJuryMemberListQueryHandler : IRequestHandler<GetJuryMemberListQuery,List<JuryMemberDto>>
+    {
+        private readonly IUnitOfService _uos;
+        private readonly IMapper _mapper;
+        public GetJuryMemberListQueryHandler(IUnitOfService uos,IMapper mapper)
+>>>>>>> 12cac6bedaf3967337d569e66dfe177cae7333cc
         {
             _uos = uos;
             _mapper = mapper;
@@ -29,4 +37,8 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Query.Ha
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 12cac6bedaf3967337d569e66dfe177cae7333cc

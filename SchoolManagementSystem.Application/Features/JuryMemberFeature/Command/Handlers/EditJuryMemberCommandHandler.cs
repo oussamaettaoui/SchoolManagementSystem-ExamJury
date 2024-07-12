@@ -23,7 +23,11 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
                 return "Jury Member Not Found";
             }
             _mapper.Map(request, juryMember);
+<<<<<<< HEAD
             string result = await _uos.MeetingService.EditJuryMemberAsync(juryMember, request.ImgFile, request.Role);
+=======
+            string result = await _uos.JuryMemberService.EditJuryMemberAsync(juryMember, request.ImgFile);
+>>>>>>> 12cac6bedaf3967337d569e66dfe177cae7333cc
             if (result == "Success")
             {
                 return "Jury Member Updated Successfully";

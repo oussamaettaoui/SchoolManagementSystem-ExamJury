@@ -8,7 +8,10 @@
 
   <ItemGroup>
 	<Folder Include="Brokers\" />
+<<<<<<< HEAD
 	<Folder Include="Features\JuryMemberFeature\Query\Validators\" />
+=======
+>>>>>>> 12cac6bedaf3967337d569e66dfe177cae7333cc
   </ItemGroup>
 
   <ItemGroup>

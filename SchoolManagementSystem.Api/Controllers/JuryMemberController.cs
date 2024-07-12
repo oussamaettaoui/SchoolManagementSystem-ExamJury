@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Commands;
+using SchoolManagementSystem.Application.Features.JuryMemberFeature.Query.Queries;
+using SchoolManagementSystem.Domain.Dtos.JuryMemberDtos;
 
 namespace SchoolManagementSystem.Api.Controllers
 {
@@ -13,6 +15,18 @@ namespace SchoolManagementSystem.Api.Controllers
         {
             _mediator = mediator;
         }
+        [HttpGet]
+        public async Task<IActionResult>  GetAllJuryMembers()
+        {
+            List<JuryMemberDto> result = await _mediator.Send(new GetJuryMemberListQuery());
+            return Ok(result);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetJuryMember([FromRoute] Guid id)
+        {
+            JuryMemberDto result = await _mediator.Send(new GetJuryMemberByIdQuery(id));
+            return Ok(result);
+        } 
         [HttpPost]
         public async Task<IActionResult> CreateJuryMember([FromForm] AddJuryMemberCommand command)
         {
