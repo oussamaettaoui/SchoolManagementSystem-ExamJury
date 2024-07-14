@@ -6,7 +6,7 @@ using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.MeetingFeature.Command.Handlers
 {
-    public class AddMeetingCommandHandler : IRequestHandler<AddMeetingCommand, string>
+    public class AddMeetingCommandHandler : IRequestHandler<AddMeetingCommand, Result>
     {
         private readonly IUnitOfService _uos;
         private readonly IMapper _mapper;
@@ -16,20 +16,23 @@ namespace SchoolManagementSystem.Application.Features.MeetingFeature.Command.Han
             _mapper = mapper;
         }
 
-        public async Task<string> Handle(AddMeetingCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(AddMeetingCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                string result = await _uos.MeetingService.AddMeetingAsync(_mapper.Map<Meeting>(request));
-                if (result == "Success")
+                Result result = await _uos.MeetingService.AddMeetingAsync(_mapper.Map<Meeting>(request));
+                if (result == Result.Success)
                 {
-                    return "the meeting added Successfully";
+                    return Result.Success;
                 }
-                return "Error During Adding";
+                else
+                {
+                    return Result.Failure;
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception("FaildInAdd handler" + ex.ToString());
+                throw new Exception("Faild In Add handler" + ex.ToString());
             }
         }
     }

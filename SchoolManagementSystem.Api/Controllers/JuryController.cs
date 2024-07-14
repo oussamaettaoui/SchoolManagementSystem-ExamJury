@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SchoolManagementSystem.Application.Features.JuryFeature.Query.Queries;
+using SchoolManagementSystem.Domain.Dtos.JuryDtos;
 
 namespace SchoolManagementSystem.Api.Controllers
 {
@@ -7,10 +9,26 @@ namespace SchoolManagementSystem.Api.Controllers
     [ApiController]
     public class JuryController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetJuryList()
+        #region Props
+        private readonly IMediator _mediator;
+        #endregion
+        #region Constructor
+        public JuryController(IMediator mediator)
         {
-            return Ok();
+            _mediator = mediator;
         }
+        #endregion
+        #region Methods
+        [HttpGet]
+        public async Task<IActionResult> GetJuryList()
+        {
+            List<JuryDto> juries = await _mediator.Send(new GetJuryListQuery());
+            if(juries == null)
+            {
+                return BadRequest();
+            }
+            return Ok(juries);
+        }
+        #endregion
     }
 }

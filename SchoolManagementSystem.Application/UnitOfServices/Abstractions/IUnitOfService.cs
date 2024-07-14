@@ -4,8 +4,10 @@ namespace SchoolManagementSystem.Application.UnitOfServices.Abstractions
 {
     public interface IUnitOfService
     {
-        IJuryMemberService juryMemberService { get; }
+        IJuryMemberService JuryMemberService { get; }
         IMeetingService MeetingService { get; }
+        IJuryService JuryService { get; }
+        IJuryMemberRoleService JuryMemberRoleService { get; }
 
     }
 }

@@ -17,6 +17,9 @@ namespace SchoolManagementSystem.Infrastructure
             services.AddDbContext<AppDbContext>(option=>option.UseSqlServer(conn));
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<IJuryMemberRepository,JuryMemberRepository>();
+            services.AddScoped<IJuryRepository,JuryRepository>();
+            services.AddScoped<IMeetingRepository,MeetingRepository>();
+            services.AddScoped<IJuryMemberRoleRepository,JuryMemberRoleRepository>();
             return services;
         }
     }

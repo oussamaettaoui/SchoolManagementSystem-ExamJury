@@ -20,11 +20,8 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
         {
             try
             {
-<<<<<<< HEAD
-                string result = await _uos.MeetingService.AddJuryMemberAsync(_mapper.Map<JuryMember>(request),request.ImgFile,request.Role);
-=======
+
                 string result = await _uos.JuryMemberService.AddJuryMemberAsync(_mapper.Map<JuryMember>(request),request.ImgFile);
->>>>>>> 12cac6bedaf3967337d569e66dfe177cae7333cc
                 if (result == "Success")
                 {
                     return "Jury Member Added Successfully";

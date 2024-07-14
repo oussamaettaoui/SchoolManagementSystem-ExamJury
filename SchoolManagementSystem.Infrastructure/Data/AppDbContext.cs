@@ -9,20 +9,43 @@ namespace SchoolManagementSystem.Infrastructure.Data
         public DbSet<Jury> Juries { get; set; }
         public DbSet<JuryMember> JuryMembers { get; set; }
         public DbSet<Meeting> Meeting { get; set; }
+        public DbSet<JuryMemberRole> JuryMemberRoles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<JuryMemberRole>(r =>
+            {
+                r.HasKey(x => x.Id);
+                r.HasData(
+                    new JuryMemberRole
+                    {
+                        Id = Guid.NewGuid(),
+                        Role = "Président"
+                    },
+                    new JuryMemberRole
+                    {
+                        Id = Guid.NewGuid(),
+                        Role = "Membre Professionnel"
+                    },
+                    new JuryMemberRole
+                    {
+                        Id = Guid.NewGuid(),
+                        Role = "Membre de l’établissement"
+                    },
+                    new JuryMemberRole
+                    {
+                        Id = Guid.NewGuid(),
+                        Role = "Membre représentant l’Administration"
+                    }
+                );
+            });
             modelBuilder.Entity<JuryMember>(jm =>
             {
                 jm.HasKey(x => x.Id);
             });
             modelBuilder.Entity<Meeting>(m =>
             {
-                m.HasKey(meeting => meeting.Id);
-
-                m.HasOne(meeting => meeting.Jury)
-                    .WithOne(jury => jury.Meeting)
-                    .HasForeignKey<Meeting>(meeting => meeting.JuryId);
+                m.HasKey(m => m.Id);
             });
             modelBuilder.Entity<Jury>(j => {
                 j.HasKey(x=>x.Id);
@@ -34,7 +57,7 @@ namespace SchoolManagementSystem.Infrastructure.Data
                     {
                         Id = Guid.NewGuid(),
                         JuryName = "AGC Jury",
-                        SectorId = 1,
+                        SectorId = Guid.Parse("216a893d-740b-47bd-a689-065170b33437"),
                         CreatedAt = DateTime.UtcNow,
                         UpdatedAt = DateTime.UtcNow
                     },
@@ -42,7 +65,7 @@ namespace SchoolManagementSystem.Infrastructure.Data
                     {
                         Id = Guid.NewGuid(),
                         JuryName = "TIC Jury",
-                        SectorId = 2,
+                        SectorId = Guid.Parse("0caff05b-d501-426f-948d-a841be4a1a3c"),
                         CreatedAt = DateTime.UtcNow,
                         UpdatedAt = DateTime.UtcNow
                     }

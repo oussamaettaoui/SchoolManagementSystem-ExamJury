@@ -1,6 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.Application.Features.MeetingFeature.Command.Commands;
+using SchoolManagementSystem.Application.Features.MeetingFeature.Query.Queries;
+using SchoolManagementSystem.Domain.Dtos.MeetingDtos;
+using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Api.Controllers
 {
@@ -13,17 +16,37 @@ namespace SchoolManagementSystem.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateMeeting([FromForm] AddMeetingCommand command)
+        [HttpGet]
+        public async Task<IActionResult> GetAllMeetings()
         {
-            string result = await _mediator.Send(command);
+            List<MeetingDto> result = await _mediator.Send(new GetMeetingListQuery());
             return Ok(result);
         }
-        [HttpPut("/update")]
-        public async Task<IActionResult> UpdateMeeting([FromForm] UpdateMeetingCommand command)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetJuryMember([FromRoute] Guid id)
         {
-            var res = await _mediator.Send(command);
-            return Ok(res);
+            MeetingDto result = await _mediator.Send(new GetMeetingByIdQuery(id));
+            return Ok(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateMeeting([FromBody] AddMeetingCommand command)
+        {
+            Result result = await _mediator.Send(command);
+            if (result == Result.Success)
+            {
+                return Ok("Meeting created successfully");
+            }
+            return BadRequest("Meeting not created");
+        }
+        [HttpPut("/update")]
+        public async Task<IActionResult> UpdateMeeting([FromBody] UpdateMeetingCommand command)
+        {
+            Result res = await _mediator.Send(command);
+            if (res == Result.Success)
+            {
+                return Ok("Meeting updated successfully");
+            }
+            return BadRequest("Meeting not updated");
         }
     }
 }

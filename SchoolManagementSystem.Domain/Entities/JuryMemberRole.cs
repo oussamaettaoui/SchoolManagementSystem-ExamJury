@@ -1,9 +1,9 @@
-﻿namespace SchoolManagementSystem.Domain.Entities
+﻿using SchoolManagementSystem.Domain.Common;
+
+namespace SchoolManagementSystem.Domain.Entities
 {
-    public enum JuryMemberRole
+    public class JuryMemberRole : Base
     {
-        President = 0,
-        ExternMember = 1,
-        Trainer = 2
+        public string? Role { get; set; }
     }
 }

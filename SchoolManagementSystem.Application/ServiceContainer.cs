@@ -12,6 +12,9 @@ namespace SchoolManagementSystem.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IJuryMemberService, JuryMemberService>();
+            services.AddTransient<IMeetingService, MeetingService>();
+            services.AddTransient<IJuryMemberRoleService, JuryMemberRoleService>();
+            services.AddTransient<IJuryService, JuryService>();
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<IUnitOfService, UnitOfService>();
             //configuration of mediator

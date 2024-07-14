@@ -4,6 +4,6 @@
     {
         public Guid JuryId { get; set; }
         public string? JuryName { get; set; }
-        public int SectorId { get; set; }
+        public Guid SectorId { get; set; }
     }
 }

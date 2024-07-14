@@ -34,8 +34,8 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<string>("JuryName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SectorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("SectorId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -47,19 +47,19 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("80938c93-35f1-463b-8bbe-02ca91f144cc"),
-                            CreatedAt = new DateTime(2024, 7, 10, 10, 22, 3, 372, DateTimeKind.Utc).AddTicks(1407),
+                            Id = new Guid("f81529e8-2a13-4460-bd27-b5b6aa1487e3"),
+                            CreatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5105),
                             JuryName = "AGC Jury",
-                            SectorId = 1,
-                            UpdatedAt = new DateTime(2024, 7, 10, 10, 22, 3, 372, DateTimeKind.Utc).AddTicks(1415)
+                            SectorId = new Guid("216a893d-740b-47bd-a689-065170b33437"),
+                            UpdatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5108)
                         },
                         new
                         {
-                            Id = new Guid("794bd7dd-ed8c-492e-8466-ab53342df174"),
-                            CreatedAt = new DateTime(2024, 7, 10, 10, 22, 3, 372, DateTimeKind.Utc).AddTicks(1421),
+                            Id = new Guid("d1ffd09a-098b-4bd0-bd05-c106295a8975"),
+                            CreatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5126),
                             JuryName = "TIC Jury",
-                            SectorId = 2,
-                            UpdatedAt = new DateTime(2024, 7, 10, 10, 22, 3, 372, DateTimeKind.Utc).AddTicks(1422)
+                            SectorId = new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"),
+                            UpdatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5128)
                         });
                 });
 
@@ -93,8 +93,8 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<string>("ProfileImg")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -106,13 +106,118 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
 
                     b.HasIndex("JuryId");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("JuryMembers");
+                });
+
+            modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.JuryMemberRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JuryMemberRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6454009a-89c6-4855-987a-314ddc8b50fc"),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Role = "Président",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("29db74bd-2c19-4b31-ae6d-b0f557ddc39e"),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Role = "Membre Professionnel",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("f71d3b08-6690-4cca-9dc1-3d2c04c07abb"),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Role = "Membre de l’établissement",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("400179d4-f4ae-45dd-82bb-d80fb8f7271c"),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Role = "Membre représentant l’Administration",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.Meeting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("JuryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeOnly>("Time")
+                        .HasColumnType("time");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JuryId");
+
+                    b.ToTable("Meeting");
                 });
 
             modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.JuryMember", b =>
                 {
                     b.HasOne("SchoolManagementSystem.Domain.Entities.Jury", "Jury")
                         .WithMany("JuryMembers")
+                        .HasForeignKey("JuryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolManagementSystem.Domain.Entities.JuryMemberRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Jury");
+
+                    b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.Meeting", b =>
+                {
+                    b.HasOne("SchoolManagementSystem.Domain.Entities.Jury", "Jury")
+                        .WithMany()
                         .HasForeignKey("JuryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

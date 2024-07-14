@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\JuryMemberFeature\Query\Validators\**" />
+    <EmbeddedResource Remove="Features\JuryMemberFeature\Query\Validators\**" />
+    <None Remove="Features\JuryMemberFeature\Query\Validators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	<Folder Include="Brokers\" />
-<<<<<<< HEAD
-	<Folder Include="Features\JuryMemberFeature\Query\Validators\" />
-=======
->>>>>>> 12cac6bedaf3967337d569e66dfe177cae7333cc
+	<Folder Include="Features\JuryFeature\Command\" />
   </ItemGroup>
 
   <ItemGroup>

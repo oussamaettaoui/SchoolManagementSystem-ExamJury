@@ -6,7 +6,7 @@ using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.MeetingFeature.Command.Handlers
 {
-    public class UpdateMeetingCommandHandler : IRequestHandler<UpdateMeetingCommand, string>
+    public class UpdateMeetingCommandHandler : IRequestHandler<UpdateMeetingCommand, Result>
     {
         private readonly IUnitOfService _uos;
         private readonly IMapper _mapper;
@@ -16,20 +16,27 @@ namespace SchoolManagementSystem.Application.Features.MeetingFeature.Command.Han
             _mapper = mapper;
         }
 
-        public async Task<string> Handle(UpdateMeetingCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateMeetingCommand request, CancellationToken cancellationToken)
         {
-            Meeting meeting = await _uos.MeetingService.GetMeetingByIdAsync(request.MeetingId);
-            if (meeting == null)
+            try
             {
-                return "Meetingr Not Found";
+                Meeting meeting = await _uos.MeetingService.GetMeetingByIdAsync(request.MeetingId);
+                if (meeting == null)
+                {
+                    return Result.NotFound;
+                }
+                _mapper.Map(request, meeting);
+                Result result = await _uos.MeetingService.UpdateMeetingAsync(meeting);
+                if (result == Result.Success)
+                {
+                    return Result.Success;
+                }
+                return Result.Failure;
             }
-            _mapper.Map(request, meeting);
-            string result = await _uos.MeetingService.UpdateMeetingAsync(meeting);
-            if (result == "Success")
+            catch (Exception ex)
             {
-                return "Meeting Updated Successfully";
+                throw new Exception("Faild In Add handler" + ex.ToString());
             }
-            return "Error Updating Deleting";
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using SchoolManagementSystem.Domain.Entities;
-
-namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
+﻿namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
 {
     public class JuryMemberDto
     {
@@ -12,6 +10,6 @@ namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
         public int YearOfExperience { get; set; }
         public string? LatestDiploma { get; set; }
         public string? ProfileImg { get; set; }
-        public JuryMemberRole Role { get; set; }
+        public Guid RoleId { get; set; }
     }
 }

@@ -5,10 +5,16 @@ namespace SchoolManagementSystem.Application.UnitOfServices
 {
     public class UnitOfService : IUnitOfService
     {
-        public IJuryMemberService MeetingService { get; private set; }
-        public UnitOfService(IJuryMemberService juryMemberService)
+        public IJuryMemberService JuryMemberService { get; private set; }
+        public IMeetingService MeetingService { get; private set; }
+        public IJuryService JuryService { get; private set; }
+        public IJuryMemberRoleService JuryMemberRoleService { get; private set; }
+        public UnitOfService(IJuryMemberService juryMemberService, IMeetingService meetingService, IJuryService juryService, IJuryMemberRoleService juryMemberRoleService)
         {
-            MeetingService = juryMemberService;
+            MeetingService = meetingService;
+            JuryMemberService = juryMemberService;
+            JuryService = juryService;
+            JuryMemberRoleService = juryMemberRoleService;
         }
     }
 }
