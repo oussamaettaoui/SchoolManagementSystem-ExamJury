@@ -38,7 +38,7 @@ namespace SchoolManagementSystem.Api.Controllers
             }
             return BadRequest("Meeting not created");
         }
-        [HttpPut("/update")]
+        [HttpPut]
         public async Task<IActionResult> UpdateMeeting([FromBody] UpdateMeetingCommand command)
         {
             Result res = await _mediator.Send(command);

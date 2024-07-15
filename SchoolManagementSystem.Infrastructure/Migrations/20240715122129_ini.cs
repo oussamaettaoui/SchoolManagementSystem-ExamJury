@@ -48,7 +48,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Time = table.Column<TimeOnly>(type: "time", nullable: false),
+                    Time = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: false),
                     JuryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -105,8 +105,8 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "JuryName", "SectorId", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("d1ffd09a-098b-4bd0-bd05-c106295a8975"), new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5126), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5128) },
-                    { new Guid("f81529e8-2a13-4460-bd27-b5b6aa1487e3"), new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5105), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5108) }
+                    { new Guid("59d1b85a-c0e0-4dfb-84a3-baa8285d6864"), new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(990), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(991) },
+                    { new Guid("d3b07d82-761f-441d-9c89-a634ea7c2efc"), new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(980), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(984) }
                 });
 
             migrationBuilder.InsertData(
@@ -114,10 +114,10 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Role", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("29db74bd-2c19-4b31-ae6d-b0f557ddc39e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre Professionnel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("400179d4-f4ae-45dd-82bb-d80fb8f7271c"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre représentant l’Administration", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("6454009a-89c6-4855-987a-314ddc8b50fc"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Président", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f71d3b08-6690-4cca-9dc1-3d2c04c07abb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre de l’établissement", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("11b562fa-12e1-4b28-9f88-44784d6b426e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre Professionnel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("26086d3c-60d8-4368-bc7d-34de1ed32fe2"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Président", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("5ec67cfc-cc72-4822-a7c3-4ee85464f9cb"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre de l’établissement", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("6f57d6a2-6953-4fcf-bf6f-2d4e2ff88004"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre représentant l’Administration", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

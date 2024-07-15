@@ -30,6 +30,7 @@ namespace SchoolManagementSystem.Application.Services
         {
             try
             {
+                meeting.Id = Guid.NewGuid();
                 await _unitOfWork.MeetingRepository.CreateAsync(meeting);
                 await _unitOfWork.CommitAsync();
                 return Result.Success;

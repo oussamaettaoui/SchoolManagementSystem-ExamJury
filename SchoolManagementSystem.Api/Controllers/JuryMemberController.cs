@@ -39,7 +39,7 @@ namespace SchoolManagementSystem.Api.Controllers
             string result = await _mediator.Send(new DeleteJuryMemberCommand(id));      
             return Ok(result);
         }
-        [HttpPut("/edit")]
+        [HttpPut]
         public async Task<IActionResult> EditEntreprise([FromForm] EditJuryMemberCommand command)
         {
             var res = await _mediator.Send(command);

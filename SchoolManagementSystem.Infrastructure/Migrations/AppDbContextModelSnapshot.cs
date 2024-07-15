@@ -47,19 +47,19 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f81529e8-2a13-4460-bd27-b5b6aa1487e3"),
-                            CreatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5105),
+                            Id = new Guid("d3b07d82-761f-441d-9c89-a634ea7c2efc"),
+                            CreatedAt = new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(980),
                             JuryName = "AGC Jury",
                             SectorId = new Guid("216a893d-740b-47bd-a689-065170b33437"),
-                            UpdatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5108)
+                            UpdatedAt = new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(984)
                         },
                         new
                         {
-                            Id = new Guid("d1ffd09a-098b-4bd0-bd05-c106295a8975"),
-                            CreatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5126),
+                            Id = new Guid("59d1b85a-c0e0-4dfb-84a3-baa8285d6864"),
+                            CreatedAt = new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(990),
                             JuryName = "TIC Jury",
                             SectorId = new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"),
-                            UpdatedAt = new DateTime(2024, 7, 14, 22, 8, 7, 413, DateTimeKind.Utc).AddTicks(5128)
+                            UpdatedAt = new DateTime(2024, 7, 15, 12, 21, 27, 871, DateTimeKind.Utc).AddTicks(991)
                         });
                 });
 
@@ -133,28 +133,28 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6454009a-89c6-4855-987a-314ddc8b50fc"),
+                            Id = new Guid("26086d3c-60d8-4368-bc7d-34de1ed32fe2"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Président",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("29db74bd-2c19-4b31-ae6d-b0f557ddc39e"),
+                            Id = new Guid("11b562fa-12e1-4b28-9f88-44784d6b426e"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre Professionnel",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("f71d3b08-6690-4cca-9dc1-3d2c04c07abb"),
+                            Id = new Guid("5ec67cfc-cc72-4822-a7c3-4ee85464f9cb"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre de l’établissement",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("400179d4-f4ae-45dd-82bb-d80fb8f7271c"),
+                            Id = new Guid("6f57d6a2-6953-4fcf-bf6f-2d4e2ff88004"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre représentant l’Administration",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -179,8 +179,8 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeOnly>("Time")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");

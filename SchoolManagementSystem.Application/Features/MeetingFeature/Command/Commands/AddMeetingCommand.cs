@@ -6,7 +6,7 @@ namespace SchoolManagementSystem.Application.Features.MeetingFeature.Command.Com
     public class AddMeetingCommand : IRequest<Result>
     {
         public DateTime Date { get; set; }
-        public TimeSpan Time { get; set; }
+        public DateTime Time { get; set; }
         public string? Location { get; set; }
         public MeetingType Type { get; set; }
         public Guid JuryId { get; set; }

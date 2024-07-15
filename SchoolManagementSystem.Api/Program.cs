@@ -16,7 +16,7 @@ builder.Services.AddCors(options =>
         corsBuilder => corsBuilder.WithOrigins("http://localhost:5173")
                                   .AllowAnyHeader()
                                   .AllowAnyMethod()
-                                  .AllowCredentials());
+                                  );
 });
 var app = builder.Build();
 // Configure the HTTP request pipeline.

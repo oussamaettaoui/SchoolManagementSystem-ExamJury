@@ -27,13 +27,13 @@ namespace SchoolManagementSystem.Application.Services
         // to retrieve JuryMember list
         public async Task<List<JuryMember>> GetJuryMemberListAsync()
         {
-            List<JuryMember> juryMembers = await _uow.JuryMemberRepository.GetAllAsNoTracking();
+            List<JuryMember> juryMembers = await _uow.JuryMemberRepository.GetJuryMembersWithRoleAsync();
             return juryMembers;
         }
         // to retrieve a specific JuryMember by id
         public async Task<JuryMember> GetJuryMemberByIdAsync(Guid id)
         {
-            JuryMember jury = await _uow.JuryMemberRepository.GetAsNoTracking(x => x.Id.Equals(id));
+            JuryMember jury = await _uow.JuryMemberRepository.GetJuryMemberWithRoleAsync(x => x.Id.Equals(id));
             return jury;
         }
         // to add a new JuryMember
