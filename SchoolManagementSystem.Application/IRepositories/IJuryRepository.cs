@@ -5,5 +5,6 @@ namespace SchoolManagementSystem.Application.IRepositories
 
     public interface IJuryRepository : IRepository<Jury>
     {
+        
     }
 }

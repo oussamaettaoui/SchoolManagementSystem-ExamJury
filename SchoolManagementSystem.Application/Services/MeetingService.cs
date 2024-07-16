@@ -18,12 +18,12 @@ namespace SchoolManagementSystem.Application.Services
         #region Methods
         public async Task<List<Meeting>> GetMeetingListAsync()
         {
-            List<Meeting> meetingList = await _unitOfWork.MeetingRepository.GetAllAsNoTracking();
+            List<Meeting> meetingList = await _unitOfWork.MeetingRepository.GetMeetingListWithJuryAsync();
             return meetingList;
         }
         public async Task<Meeting> GetMeetingByIdAsync(Guid id)
         {
-            Meeting meeting = await _unitOfWork.MeetingRepository.GetAsNoTracking(x=>x.Id.Equals(id));
+            Meeting meeting = await _unitOfWork.MeetingRepository.GetMeetingByIdWithJuryAsync(x=>x.Id.Equals(id));
             return meeting;
         }
         public async Task<Result> AddMeetingAsync(Meeting meeting)

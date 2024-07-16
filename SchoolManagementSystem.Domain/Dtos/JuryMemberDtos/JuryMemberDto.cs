@@ -15,4 +15,4 @@ namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
         public string? ProfileImg { get; set; }
         public JuryMemberRoleDto? Role { get; set; }
     }
-}
+}   
