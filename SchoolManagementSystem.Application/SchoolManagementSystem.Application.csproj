@@ -14,8 +14,6 @@
 
   <ItemGroup>
 	<Folder Include="Brokers\" />
-	<Folder Include="Features\DayOrderFeature\Query\Handlers\" />
-	<Folder Include="Features\DayOrderFeature\Query\Queries\" />
 	<Folder Include="Features\JuryFeature\Command\" />
   </ItemGroup>
 

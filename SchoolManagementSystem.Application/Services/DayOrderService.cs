@@ -11,17 +11,17 @@ namespace SchoolManagementSystem.Application.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<List<DayOrder>> GetMeetingListAsync()
+        public async Task<List<DayOrder>> GetDayOrderListAsync()
         {
             List<DayOrder> dayOrderList = await _unitOfWork.DayOrderRepository.GetAllAsNoTracking();
             return dayOrderList;
         }
-        public async Task<DayOrder> GetMeetingByIdAsync(Guid id)
+        public async Task<DayOrder> GetDayOrderByIdAsync(Guid id)
         {
             DayOrder dayOrder = await _unitOfWork.DayOrderRepository.GetAsNoTracking(x => x.Id.Equals(id));
             return dayOrder;
         }
-        public async Task<Result> AddMeetingAsync(DayOrder dayOrder)
+        public async Task<Result> AddDayOrderAsync(DayOrder dayOrder)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace SchoolManagementSystem.Application.Services
                 return Result.Failure;
             }
         }
-        public async Task<Result> UpdateMeetingAsync(DayOrder dayOrder)
+        public async Task<Result> EditDayOrderAsync(DayOrder dayOrder)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace SchoolManagementSystem.Application.Services
                 return Result.Failure;
             }
         }
-        public async Task<Result> DeleteMeetingAsync(DayOrder dayOrder)
+        public async Task<Result> DeleteDayOrderAsync(DayOrder dayOrder)
         {
             try
             {

@@ -15,9 +15,27 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Ha
             _unitOfService = unitOfService;
             _mapper = mapper;
         }
-        public Task<Result> Handle(EditDayOrderCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(EditDayOrderCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DayOrder dayOrder = await _unitOfService.DayOrderService.GetDayOrderByIdAsync(request.DayOrderId);
+                if (dayOrder == null)
+                {
+                    return Result.NotFound;
+                }
+                _mapper.Map(request, dayOrder);
+                Result result = await _unitOfService.DayOrderService.EditDayOrderAsync(dayOrder);
+                if (result == Result.Success)
+                {
+                    return Result.Success;
+                }
+                return Result.Failure;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Faild In Add handler" + ex.ToString());
+            }
         }
     }
 }
