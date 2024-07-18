@@ -17,8 +17,6 @@ namespace SchoolManagementSystem.Application.UnitOfServices
             JuryMemberService = juryMemberService;
             JuryService = juryService;
             JuryMemberRoleService = juryMemberRoleService;
-            EmailService = emailService;
-            DayOrderService = dayOrderService;
         }
     }
 }

@@ -4,10 +4,10 @@ namespace SchoolManagementSystem.Application.IServices
 {
     public interface IDayOrderService
     {
-        Task<List<DayOrder>> GetMeetingListAsync();
-        Task<DayOrder> GetMeetingByIdAsync(Guid id);
-        Task<Result> AddMeetingAsync(DayOrder dayOrder);
-        Task<Result> UpdateMeetingAsync(DayOrder dayOrder);
-        Task<Result> DeleteMeetingAsync(DayOrder dayOrder);
+        Task<List<DayOrder>> GetDayOrderListAsync();
+        Task<DayOrder> GetDayOrderByIdAsync(Guid id);
+        Task<Result> AddDayOrderAsync(DayOrder dayOrder);
+        Task<Result> EditDayOrderAsync(DayOrder dayOrder);
+        Task<Result> DeleteDayOrderAsync(DayOrder dayOrder);
     }
 }
