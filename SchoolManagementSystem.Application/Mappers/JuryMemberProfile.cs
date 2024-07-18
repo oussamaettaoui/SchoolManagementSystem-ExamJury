@@ -11,6 +11,11 @@ namespace SchoolManagementSystem.Application.Mappers
         public JuryMemberProfile()
         {
             CreateMap<AddJuryMemberCommand, JuryMember>();
+
+
+
+
+
             CreateMap<EditJuryMemberCommand, JuryMember>().ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.JuryMemberId));
             CreateMap<JuryMember, JuryMemberDto>().ForMember(dest => dest.JuryMemberId, opt => opt.MapFrom(src => src.Id)).ForMember(dest=>dest.Role,opt=>opt.MapFrom(src=>src.Role));
             CreateMap<JuryMemberRole, JuryMemberRoleDto>().ForMember(dest => dest.JuryMemberRoleId, opt => opt.MapFrom(src => src.Id));

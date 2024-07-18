@@ -20,6 +20,7 @@ namespace SchoolManagementSystem.Infrastructure
             services.AddScoped<IJuryRepository,JuryRepository>();
             services.AddScoped<IMeetingRepository,MeetingRepository>();
             services.AddScoped<IJuryMemberRoleRepository,JuryMemberRoleRepository>();
+            services.AddScoped<IDayOrderRepository,DayOrderRepository>();
             return services;
         }
     }

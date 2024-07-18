@@ -8,6 +8,7 @@ namespace SchoolManagementSystem.Application.UnitOfServices.Abstractions
         IMeetingService MeetingService { get; }
         IJuryService JuryService { get; }
         IJuryMemberRoleService JuryMemberRoleService { get; }
+        IDayOrderService OrderService { get; }
 
     }
 }

@@ -8,6 +8,7 @@ namespace SchoolManagementSystem.Application.Interfaces
         IMeetingRepository MeetingRepository { get; }
         IJuryRepository JuryRepository { get; }
         IJuryMemberRoleRepository JuryMemberRoleRepository { get; }
+        IDayOrderRepository DayOrderRepository { get; }
         void Commit();
         Task CommitAsync();
         void Rollback();

@@ -9,6 +9,9 @@ namespace SchoolManagementSystem.Application.UnitOfServices
         public IMeetingService MeetingService { get; private set; }
         public IJuryService JuryService { get; private set; }
         public IJuryMemberRoleService JuryMemberRoleService { get; private set; }
+
+        public IDayOrderService OrderService { get; private set; }
+
         public UnitOfService(IJuryMemberService juryMemberService, IMeetingService meetingService, IJuryService juryService, IJuryMemberRoleService juryMemberRoleService)
         {
             MeetingService = meetingService;

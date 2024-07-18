@@ -15,13 +15,16 @@ namespace SchoolManagementSystem.Infrastructure.UnitOfWorks
 
         public IJuryMemberRoleRepository JuryMemberRoleRepository { get; private set; }
 
-        public UnitOfWork(AppDbContext db , IJuryMemberRepository juryMemberRepository, IMeetingRepository meetingRepository, IJuryRepository juryRepository, IJuryMemberRoleRepository juryMemberRoleRepository)
+        public IDayOrderRepository DayOrderRepository { get; private set; }
+
+        public UnitOfWork(AppDbContext db , IJuryMemberRepository juryMemberRepository, IMeetingRepository meetingRepository, IJuryRepository juryRepository, IJuryMemberRoleRepository juryMemberRoleRepository, IDayOrderRepository dayOrderRepository)
         {
             _db = db;
             JuryMemberRepository = juryMemberRepository;
             MeetingRepository = meetingRepository;
             JuryRepository = juryRepository;
             JuryMemberRoleRepository = juryMemberRoleRepository;
+            DayOrderRepository = dayOrderRepository;
         }
         public void Commit()
         {

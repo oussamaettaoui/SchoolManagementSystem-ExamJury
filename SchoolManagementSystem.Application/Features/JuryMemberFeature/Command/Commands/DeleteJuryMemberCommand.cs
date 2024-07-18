@@ -8,6 +8,6 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
         public DeleteJuryMemberCommand(Guid id)
         {
             JuryMemberId = id;
-        }
+        }   
     }
 }

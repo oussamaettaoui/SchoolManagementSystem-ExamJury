@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
-using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Commands
 {

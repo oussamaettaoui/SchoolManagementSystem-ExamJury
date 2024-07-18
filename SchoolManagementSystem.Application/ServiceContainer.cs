@@ -17,6 +17,7 @@ namespace SchoolManagementSystem.Application
             services.AddTransient<IJuryService, JuryService>();
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<IUnitOfService, UnitOfService>();
+            services.AddTransient<IDayOrderService, DayOrderService>();
             //configuration of mediator
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             //configuration of auto mapper
