@@ -13,7 +13,9 @@ namespace SchoolManagementSystem.Application.Mappers
             CreateMap<AddMeetingCommand, Meeting>();
             CreateMap<UpdateMeetingCommand, Meeting>().ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.MeetingId));
             CreateMap<Meeting, MeetingDto>().ForMember(dest => dest.MeetingId, opt => opt.MapFrom(src => src.Id)).ForMember(dest=>dest.Jury,opt=>opt.MapFrom(src=>src.Jury));
+            CreateMap<Meeting, SingleMeetingDto>().ForMember(dest => dest.MeetingId, opt => opt.MapFrom(src => src.Id)).ForMember(dest => dest.Jury, opt => opt.MapFrom(src => src.Jury));
             CreateMap<Jury, JuryDto>().ForMember(dest => dest.JuryId, opt => opt.MapFrom(src => src.Id));
+            CreateMap<Jury, SingleJuryDto>().ForMember(dest => dest.JuryId, opt => opt.MapFrom(src => src.Id)).ForMember(dest => dest.JuryMembers, opt => opt.MapFrom(src => src.JuryMembers)); 
         }
     }
 }

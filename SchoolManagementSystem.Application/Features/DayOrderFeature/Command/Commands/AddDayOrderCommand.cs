@@ -5,6 +5,6 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Co
 {
     public class AddDayOrderCommand : IRequest<Result>
     {
-        public string? MyProperty { get; set; }
+        public string? DayOrderTitle { get; set; }
     }
 }

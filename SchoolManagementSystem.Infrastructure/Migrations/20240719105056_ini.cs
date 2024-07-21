@@ -8,11 +8,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SchoolManagementSystem.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class ini : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "dayOrders",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DayOrderTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_dayOrders", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Juries",
                 columns: table => new
@@ -105,8 +119,8 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "JuryName", "SectorId", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("b5874acb-e153-4f77-b699-1ad3c267c450"), new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3037), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3041) },
-                    { new Guid("c7d5a0f3-e016-4f02-b6c6-b1bc0ff3dcfe"), new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3047), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3048) }
+                    { new Guid("92695e86-944f-425a-b1c5-14f7dbd8652b"), new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1126), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1131) },
+                    { new Guid("ca642b1a-51c6-4140-984b-b6ad62f754bd"), new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1138), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1138) }
                 });
 
             migrationBuilder.InsertData(
@@ -114,10 +128,10 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Role", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("2c2a1c3e-fdc0-4104-a40b-8e80cec1657b"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre Professionnel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("4510860a-8d8f-4fb2-b369-f087f9a58d73"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre représentant l’Administration", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("708bbe56-8b4a-4f2a-9912-b5aafddfa566"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre de l’établissement", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("af40058d-2acf-4b61-8bb9-e8223a95349d"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Président", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("11ac01df-8776-4f36-974d-0eecc522941f"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre Professionnel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("665d666d-2013-4865-9b88-7e0d25b53fd9"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Président", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("b398b593-36ca-49d9-97bd-58fa0a322e80"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre représentant l’Administration", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("cd25824c-57a3-4caf-ba77-f3491967dda6"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre de l’établissement", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -139,6 +153,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "dayOrders");
+
             migrationBuilder.DropTable(
                 name: "JuryMembers");
 

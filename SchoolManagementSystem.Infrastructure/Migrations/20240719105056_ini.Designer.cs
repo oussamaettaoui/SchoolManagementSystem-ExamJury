@@ -12,8 +12,8 @@ using SchoolManagementSystem.Infrastructure.Data;
 namespace SchoolManagementSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240718203946_init")]
-    partial class init
+    [Migration("20240719105056_ini")]
+    partial class ini
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,26 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.DayOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DayOrderTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("dayOrders");
+                });
 
             modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.Jury", b =>
                 {
@@ -50,19 +70,19 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b5874acb-e153-4f77-b699-1ad3c267c450"),
-                            CreatedAt = new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3037),
+                            Id = new Guid("92695e86-944f-425a-b1c5-14f7dbd8652b"),
+                            CreatedAt = new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1126),
                             JuryName = "AGC Jury",
                             SectorId = new Guid("216a893d-740b-47bd-a689-065170b33437"),
-                            UpdatedAt = new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3041)
+                            UpdatedAt = new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1131)
                         },
                         new
                         {
-                            Id = new Guid("c7d5a0f3-e016-4f02-b6c6-b1bc0ff3dcfe"),
-                            CreatedAt = new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3047),
+                            Id = new Guid("ca642b1a-51c6-4140-984b-b6ad62f754bd"),
+                            CreatedAt = new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1138),
                             JuryName = "TIC Jury",
                             SectorId = new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"),
-                            UpdatedAt = new DateTime(2024, 7, 18, 20, 39, 45, 110, DateTimeKind.Utc).AddTicks(3048)
+                            UpdatedAt = new DateTime(2024, 7, 19, 10, 50, 54, 276, DateTimeKind.Utc).AddTicks(1138)
                         });
                 });
 
@@ -136,28 +156,28 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("af40058d-2acf-4b61-8bb9-e8223a95349d"),
+                            Id = new Guid("665d666d-2013-4865-9b88-7e0d25b53fd9"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Président",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("2c2a1c3e-fdc0-4104-a40b-8e80cec1657b"),
+                            Id = new Guid("11ac01df-8776-4f36-974d-0eecc522941f"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre Professionnel",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("708bbe56-8b4a-4f2a-9912-b5aafddfa566"),
+                            Id = new Guid("cd25824c-57a3-4caf-ba77-f3491967dda6"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre de l’établissement",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("4510860a-8d8f-4fb2-b369-f087f9a58d73"),
+                            Id = new Guid("b398b593-36ca-49d9-97bd-58fa0a322e80"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre représentant l’Administration",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)

@@ -20,6 +20,10 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Ha
             try
             {
                 DayOrder dayOrder = await _unitOfService.DayOrderService.GetDayOrderByIdAsync(request.DayOrderId);
+                if (dayOrder == null)
+                {
+                    return Result.NotFound;
+                }
                 Result result = await _unitOfService.DayOrderService.DeleteDayOrderAsync(dayOrder);
                 if (result == Result.Success)
                 {
@@ -34,19 +38,3 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Ha
         }
     }
 }
-
-
-// try
-//{
-  //  JuryMember juryMember = await _uos.JuryMemberService.GetJuryMemberByIdAsync(request.JuryMemberId);
-    //string result = await _uos.JuryMemberService.DeleteJuryMemberAsync(juryMember);
-    //if (result == "Success")
- //   {
-   //     return "Jury Member Deleted Successfully";
-    //}
-  //  return "Error During Deleting";
-//}
-  //          catch (Exception ex)
-    //        {
-      //          throw new Exception("Error" + ex.ToString());
-        //    }

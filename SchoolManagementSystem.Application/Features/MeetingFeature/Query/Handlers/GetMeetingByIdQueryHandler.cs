@@ -7,7 +7,7 @@ using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.MeetingFeature.Query.Handlers
 {
-    public class GetMeetingByIdQueryHandler : IRequestHandler<GetMeetingByIdQuery, MeetingDto>
+    public class GetMeetingByIdQueryHandler : IRequestHandler<GetMeetingByIdQuery, SingleMeetingDto>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfService _unitOfService;
@@ -16,12 +16,12 @@ namespace SchoolManagementSystem.Application.Features.MeetingFeature.Query.Handl
             _mapper = mapper;
             _unitOfService = unitOfService;
         }
-        public async Task<MeetingDto> Handle(GetMeetingByIdQuery request, CancellationToken cancellationToken)
+        public async Task<SingleMeetingDto> Handle(GetMeetingByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 Meeting meeting = await _unitOfService.MeetingService.GetMeetingByIdAsync(request.MeetingId);
-                return _mapper.Map<MeetingDto>(meeting);
+                return _mapper.Map<SingleMeetingDto>(meeting);
             }
             catch (Exception ex)
             {

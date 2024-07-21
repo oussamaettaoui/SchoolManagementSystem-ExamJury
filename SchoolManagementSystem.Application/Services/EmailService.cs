@@ -18,13 +18,13 @@ namespace SchoolManagementSystem.Application.Services
         public void SendEmailAsync(EmailDto emailDto)
         {
             MimeMessage email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailUserName").Value));
+            email.From.Add(MailboxAddress.Parse(_config.GetSection("SMTP_Infos:EmailUserName").Value));
             email.To.Add(MailboxAddress.Parse(emailDto.To));
             email.Subject = emailDto.Subject;
             email.Body = new TextPart(TextFormat.Html) { Text = emailDto.Body};
             //
-            var username = _config.GetValue<string>("EmailUserName");
-            var password = _config.GetValue<string>("EmailPassword");
+            var username = _config.GetValue<string>("SMTP_Infos:EmailUserName");
+            var password = _config.GetValue<string>("SMTP_Infos:EmailPassword");
             //
             using var smtp = new SmtpClient();
             smtp.Connect(_config.GetSection("EmailHost").Value, 587,SecureSocketOptions.StartTls);

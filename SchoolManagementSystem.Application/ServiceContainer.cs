@@ -15,7 +15,7 @@ namespace SchoolManagementSystem.Application
             services.AddTransient<IMeetingService, MeetingService>();
             services.AddTransient<IJuryMemberRoleService, JuryMemberRoleService>();
             services.AddTransient<IJuryService, JuryService>();
-            services.AddTransient<IFileService, FileService>();
+            services.AddTransient<IBlobService, BlobService>();
             services.AddTransient<IUnitOfService, UnitOfService>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IDayOrderService, DayOrderService>();

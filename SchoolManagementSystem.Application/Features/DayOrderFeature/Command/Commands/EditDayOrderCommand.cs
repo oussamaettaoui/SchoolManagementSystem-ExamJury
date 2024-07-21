@@ -5,7 +5,7 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Co
 {
     public class EditDayOrderCommand : IRequest<Result>
     {
-        public string? MyProperty { get; set; }
-        public Guid DayOrderId { get; internal set; }
+        public Guid DayOrderId { get; set; }
+        public string? DayOrderTitle { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SchoolManagementSystem.Domain.Entities
 {
-    public class DayOrder : Base
+    public class DayOrderModel : Base
     {
         public string? DayOrderTitle { get; set; }
     }

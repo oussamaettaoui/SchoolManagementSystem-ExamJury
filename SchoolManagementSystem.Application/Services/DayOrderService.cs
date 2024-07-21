@@ -18,8 +18,15 @@ namespace SchoolManagementSystem.Application.Services
         }
         public async Task<DayOrder> GetDayOrderByIdAsync(Guid id)
         {
-            DayOrder dayOrder = await _unitOfWork.DayOrderRepository.GetAsNoTracking(x => x.Id.Equals(id));
-            return dayOrder;
+            try
+            {
+                DayOrder dayOrder = await _unitOfWork.DayOrderRepository.GetAsNoTracking(x => x.Id.Equals(id));
+                return dayOrder;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error Message : "+ex.ToString());
+            }
         }
         public async Task<Result> AddDayOrderAsync(DayOrder dayOrder)
         {
@@ -32,7 +39,7 @@ namespace SchoolManagementSystem.Application.Services
             }
             catch (Exception ex)
             {
-                return Result.Failure;
+                throw new Exception("Error Message : "+ex.ToString());
             }
         }
         public async Task<Result> EditDayOrderAsync(DayOrder dayOrder)

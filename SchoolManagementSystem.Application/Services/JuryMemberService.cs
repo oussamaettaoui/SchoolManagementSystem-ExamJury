@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using SchoolManagementSystem.Application.Interfaces;
 using SchoolManagementSystem.Application.IServices;
 using SchoolManagementSystem.Domain.Entities;
@@ -10,17 +9,13 @@ namespace SchoolManagementSystem.Application.Services
     {
         #region Props
         private readonly IUnitOfWork _uow;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IMapper _mapper;
-        private readonly IFileService _fileService;
+        private readonly IBlobService _blobService;
         #endregion
         #region Constructor
-        public JuryMemberService(IUnitOfWork uow, IHttpContextAccessor httpContextAccessor, IMapper mapper, IFileService fileService)
+        public JuryMemberService(IUnitOfWork uow, IBlobService blobService)
         {
             _uow = uow;
-            _httpContextAccessor = httpContextAccessor;
-            _mapper = mapper;
-            _fileService = fileService;
+            _blobService = blobService;
         }
         #endregion
         #region Methods
@@ -41,11 +36,9 @@ namespace SchoolManagementSystem.Application.Services
         {
             try
             {
-                HttpRequest context = _httpContextAccessor.HttpContext.Request;
-                string baseurl = context.Scheme + "://" + context.Host;
-                string juryImg = await _fileService.UploadFile(ImgFile);
                 juryMember.Id = Guid.NewGuid();
-                juryMember.ProfileImg = baseurl + juryImg;
+                string imgUrl = await _blobService.UploadAsync(juryMember.Id,ImgFile); 
+                juryMember.ProfileImg = imgUrl;
                 await _uow.JuryMemberRepository.CreateAsync(juryMember);
                 await _uow.CommitAsync();
                 return "Success";
@@ -62,13 +55,10 @@ namespace SchoolManagementSystem.Application.Services
             {
                 if (!string.IsNullOrEmpty(juryMember.ProfileImg))
                 {
-                    var oldImgPath = juryMember.ProfileImg.Replace($"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}", "");
-                    _fileService.DeleteFile(oldImgPath);
+                    _blobService.DeleteAsync(juryMember.Id.ToString());
                 }
-                HttpRequest context = _httpContextAccessor.HttpContext.Request;
-                string baseurl = context.Scheme + "://" + context.Host;
-                string juryImg = await _fileService.UploadFile(ImgFile);
-                juryMember.ProfileImg = baseurl + juryImg;
+                string imgUrl = await _blobService.UploadAsync(juryMember.Id, ImgFile);
+                juryMember.ProfileImg = imgUrl;
                 juryMember.UpdatedAt = DateTime.UtcNow;
                 await _uow.JuryMemberRepository.UpdateAsync(juryMember);
                 await _uow.CommitAsync();
@@ -84,8 +74,7 @@ namespace SchoolManagementSystem.Application.Services
         {
             if (!string.IsNullOrEmpty(juryMember.ProfileImg))
             {
-                var oldImgPath = juryMember.ProfileImg.Replace($"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}", "");
-                _fileService.DeleteFile(oldImgPath);
+                _blobService.DeleteAsync(juryMember.Id.ToString());
             }
             await _uow.JuryMemberRepository.RemoveAsync(juryMember);
             await _uow.CommitAsync();

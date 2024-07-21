@@ -1,6 +1,6 @@
 using SchoolManagementSystem.Infrastructure;
 using SchoolManagementSystem.Application;
-using Microsoft.Extensions.FileProviders;
+using Azure.Storage.Blobs;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton(x=> new BlobServiceClient(builder.Configuration.GetValue<string>("BlobStorage:ConnectionString")));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -25,19 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseStaticFiles();
-
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "wwwroot/Files")),
-    RequestPath = "/Resources"
-});
-
 app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigin");
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

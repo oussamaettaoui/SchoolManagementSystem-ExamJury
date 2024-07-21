@@ -1,5 +1,4 @@
 ﻿using SchoolManagementSystem.Domain.Dtos.JuryMemberRoleDtos;
-using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
 {

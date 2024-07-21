@@ -7,7 +7,7 @@ using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Api.Controllers
 {
-    [Route("api/meeting")]
+    [Route("api/Meeting")]
     [ApiController]
     public class MeetingController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace SchoolManagementSystem.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetJuryMember([FromRoute] Guid id)
         {
-            MeetingDto result = await _mediator.Send(new GetMeetingByIdQuery(id));
+            SingleMeetingDto result = await _mediator.Send(new GetMeetingByIdQuery(id));
             return Ok(result);
         }
         [HttpPost]

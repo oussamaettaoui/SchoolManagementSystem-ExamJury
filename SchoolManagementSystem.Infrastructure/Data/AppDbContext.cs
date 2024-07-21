@@ -10,6 +10,7 @@ namespace SchoolManagementSystem.Infrastructure.Data
         public DbSet<JuryMember> JuryMembers { get; set; }
         public DbSet<Meeting> Meeting { get; set; }
         public DbSet<JuryMemberRole> JuryMemberRoles { get; set; }
+        public DbSet<DayOrder> dayOrders { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);

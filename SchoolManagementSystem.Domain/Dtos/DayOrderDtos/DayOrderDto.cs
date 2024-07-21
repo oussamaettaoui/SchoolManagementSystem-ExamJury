@@ -3,7 +3,7 @@
     public class DayOrderDto
     {
         public Guid DayOrderId { get; set; }
-        public string? OrderTitle { get; set; }
+        public string? DayOrderTitle { get; set; }
 
     }
 }
