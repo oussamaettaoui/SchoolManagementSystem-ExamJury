@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Commands
@@ -7,5 +8,6 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Co
     {
         public Guid DayOrderId { get; set; }
         public string? DayOrderTitle { get; set; }
+        public IFormFile? DocumentFile { get; set; }
     }
 }

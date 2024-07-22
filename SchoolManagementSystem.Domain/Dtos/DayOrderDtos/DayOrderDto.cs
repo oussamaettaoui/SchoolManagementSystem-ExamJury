@@ -4,6 +4,7 @@
     {
         public Guid DayOrderId { get; set; }
         public string? DayOrderTitle { get; set; }
+        public string? DocumentPath { get; set; }
 
     }
 }
