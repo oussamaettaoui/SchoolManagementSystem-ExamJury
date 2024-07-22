@@ -10,5 +10,6 @@ namespace SchoolManagementSystem.Domain.Entities
         public MeetingType Type { get; set; }
         public Guid JuryId { get; set; }
         public Jury? Jury { get; set; }
+        public List<DayOrderModel>? DayOrderModelList { get; set; }
     }
 }

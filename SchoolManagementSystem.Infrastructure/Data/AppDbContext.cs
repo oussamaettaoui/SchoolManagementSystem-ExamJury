@@ -47,6 +47,9 @@ namespace SchoolManagementSystem.Infrastructure.Data
             modelBuilder.Entity<Meeting>(m =>
             {
                 m.HasKey(m => m.Id);
+                m.HasMany(u => u.DayOrderModelList)
+                    .WithOne(u => u.Meeting)
+                    .HasForeignKey(u => u.IdMetting);
             });
             modelBuilder.Entity<Jury>(j => {
                 j.HasKey(x=>x.Id);
