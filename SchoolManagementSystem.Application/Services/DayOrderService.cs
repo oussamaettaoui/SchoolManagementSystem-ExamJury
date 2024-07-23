@@ -1,4 +1,5 @@
-﻿using SchoolManagementSystem.Application.Interfaces;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolManagementSystem.Application.Interfaces;
 using SchoolManagementSystem.Application.IServices;
 using SchoolManagementSystem.Domain.Entities;
 
@@ -7,9 +8,11 @@ namespace SchoolManagementSystem.Application.Services
     public class DayOrderService : IDayOrderService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public DayOrderService(IUnitOfWork unitOfWork)
+        private readonly IBlobService _blobService;
+        public DayOrderService(IUnitOfWork unitOfWork, IBlobService blobService)
         {
             _unitOfWork = unitOfWork;
+            _blobService = blobService;
         }
         public async Task<List<DayOrder>> GetDayOrderListAsync()
         {
@@ -28,11 +31,13 @@ namespace SchoolManagementSystem.Application.Services
                 throw new Exception("Error Message : "+ex.ToString());
             }
         }
-        public async Task<Result> AddDayOrderAsync(DayOrder dayOrder)
+        public async Task<Result> AddDayOrderAsync(DayOrder dayOrder,IFormFile DocumentFile)
         {
             try
             {
                 dayOrder.Id = Guid.NewGuid();
+                string docPath = await _blobService.UploadAsync(dayOrder.Id, DocumentFile);
+                dayOrder.DocumentPath = docPath;
                 await _unitOfWork.DayOrderRepository.CreateAsync(dayOrder);
                 await _unitOfWork.CommitAsync();
                 return Result.Success;
@@ -42,10 +47,17 @@ namespace SchoolManagementSystem.Application.Services
                 throw new Exception("Error Message : "+ex.ToString());
             }
         }
-        public async Task<Result> EditDayOrderAsync(DayOrder dayOrder)
+        public async Task<Result> EditDayOrderAsync(DayOrder dayOrder, IFormFile DocumentFile)
         {
             try
             {
+                if (!string.IsNullOrEmpty(dayOrder.DocumentPath))
+                {
+                    _blobService.DeleteAsync(dayOrder.Id.ToString());
+                }
+                string docPath = await _blobService.UploadAsync(dayOrder.Id,DocumentFile);
+                dayOrder.DocumentPath = docPath;
+                dayOrder.UpdatedAt = DateTime.UtcNow;
                 await _unitOfWork.DayOrderRepository.UpdateAsync(dayOrder);
                 await _unitOfWork.CommitAsync();
                 return Result.Success;
@@ -59,6 +71,10 @@ namespace SchoolManagementSystem.Application.Services
         {
             try
             {
+                if (!string.IsNullOrEmpty(dayOrder.DocumentPath))
+                {
+                    _blobService.DeleteAsync(dayOrder.Id.ToString());
+                }
                 await _unitOfWork.DayOrderRepository.RemoveAsync(dayOrder);
                 await _unitOfWork.CommitAsync();
                 return Result.Success;

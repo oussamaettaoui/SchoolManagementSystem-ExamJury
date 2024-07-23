@@ -34,7 +34,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<string>("DayOrderTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FilePath")
+                    b.Property<string>("DocumentPath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -55,6 +55,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DayOrderTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentPath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("IdMetting")
@@ -95,19 +98,19 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("09524f42-7987-4b75-94f7-5f2234702727"),
-                            CreatedAt = new DateTime(2024, 7, 22, 11, 23, 50, 807, DateTimeKind.Utc).AddTicks(4560),
+                            Id = new Guid("42b598ec-cfa5-4455-b990-3902acc43852"),
+                            CreatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8033),
                             JuryName = "AGC Jury",
                             SectorId = new Guid("216a893d-740b-47bd-a689-065170b33437"),
-                            UpdatedAt = new DateTime(2024, 7, 22, 11, 23, 50, 807, DateTimeKind.Utc).AddTicks(4560)
+                            UpdatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8037)
                         },
                         new
                         {
-                            Id = new Guid("a324b7d9-bffa-4526-bd2f-9e5bf8dd350e"),
-                            CreatedAt = new DateTime(2024, 7, 22, 11, 23, 50, 807, DateTimeKind.Utc).AddTicks(4570),
+                            Id = new Guid("5a19e0e1-ac97-4f4c-a3fd-41167438f5a1"),
+                            CreatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8057),
                             JuryName = "TIC Jury",
                             SectorId = new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"),
-                            UpdatedAt = new DateTime(2024, 7, 22, 11, 23, 50, 807, DateTimeKind.Utc).AddTicks(4570)
+                            UpdatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8057)
                         });
                 });
 
@@ -181,28 +184,28 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ffcf1ac7-66e4-4573-a375-48bb396f47be"),
+                            Id = new Guid("53cdfc4d-c617-403b-9457-4bd704535c0e"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Président",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("51914d64-d605-44e4-877b-287841fff14e"),
+                            Id = new Guid("2bc43749-192c-4a65-a8bb-164e17100527"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre Professionnel",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("5fbeb837-57bc-444f-8161-80be702dd5b4"),
+                            Id = new Guid("7a49db16-39c3-40bb-bcfd-2e683f294f59"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre de l’établissement",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("2eae63d1-f596-4e2f-a110-1cf8f989e342"),
+                            Id = new Guid("b6080122-f6cf-4cd8-a576-c298fa246cb4"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre représentant l’Administration",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -246,7 +249,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
             modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.DayOrderModel", b =>
                 {
                     b.HasOne("SchoolManagementSystem.Domain.Entities.Meeting", "Meeting")
-                        .WithMany("OrderModelList")
+                        .WithMany("DayOrderModels")
                         .HasForeignKey("IdMetting")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -291,7 +294,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("SchoolManagementSystem.Domain.Entities.Meeting", b =>
                 {
-                    b.Navigation("OrderModelList");
+                    b.Navigation("DayOrderModels");
                 });
 #pragma warning restore 612, 618
         }

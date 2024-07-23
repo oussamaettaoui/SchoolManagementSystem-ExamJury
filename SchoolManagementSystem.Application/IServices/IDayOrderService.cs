@@ -1,4 +1,5 @@
-﻿using SchoolManagementSystem.Domain.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.IServices
 {
@@ -6,8 +7,8 @@ namespace SchoolManagementSystem.Application.IServices
     {
         Task<List<DayOrder>> GetDayOrderListAsync();
         Task<DayOrder> GetDayOrderByIdAsync(Guid id);
-        Task<Result> AddDayOrderAsync(DayOrder dayOrder);
-        Task<Result> EditDayOrderAsync(DayOrder dayOrder);
+        Task<Result> AddDayOrderAsync(DayOrder dayOrder, IFormFile DocumentFile);
+        Task<Result> EditDayOrderAsync(DayOrder dayOrder, IFormFile DocumentFile);
         Task<Result> DeleteDayOrderAsync(DayOrder dayOrder);
     }
 }

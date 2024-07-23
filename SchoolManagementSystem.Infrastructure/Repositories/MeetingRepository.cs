@@ -20,7 +20,7 @@ namespace SchoolManagementSystem.Infrastructure.Repositories
         }
         public async Task<Meeting> GetMeetingByIdWithJuryAsync(Expression<Func<Meeting, bool>> filter)
         {
-            Meeting meeting = await _db.Meeting.AsNoTracking().Where(filter).Include(x => x.Jury).ThenInclude(x=>x.JuryMembers).ThenInclude(x=>x.Role).FirstOrDefaultAsync();
+            Meeting meeting = await _db.Meeting.AsNoTracking().Where(filter).Include(x => x.DayOrderModels).Include(x => x.Jury).ThenInclude(x=>x.JuryMembers).ThenInclude(x=>x.Role).FirstOrDefaultAsync();
             return meeting;
         }
     }

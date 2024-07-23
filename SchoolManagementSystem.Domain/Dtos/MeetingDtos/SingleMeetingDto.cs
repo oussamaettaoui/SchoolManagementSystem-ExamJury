@@ -1,4 +1,5 @@
-﻿using SchoolManagementSystem.Domain.Dtos.JuryDtos;
+﻿using SchoolManagementSystem.Domain.Dtos.DayOrderModelDtos;
+using SchoolManagementSystem.Domain.Dtos.JuryDtos;
 using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Domain.Dtos.MeetingDtos
@@ -11,5 +12,6 @@ namespace SchoolManagementSystem.Domain.Dtos.MeetingDtos
         public string? Location { get; set; }
         public MeetingType Type { get; set; }
         public SingleJuryDto? Jury { get; set; }
+        public List<AddDayOrderModel>? DayOrderModels { get; set; }
     }
 }

@@ -47,7 +47,7 @@ namespace SchoolManagementSystem.Infrastructure.Data
             modelBuilder.Entity<Meeting>(m =>
             {
                 m.HasKey(m => m.Id);
-                m.HasMany(u => u.DayOrderModelList)
+                m.HasMany(u => u.DayOrderModels)
                     .WithOne(u => u.Meeting)
                     .HasForeignKey(u => u.IdMetting);
             });

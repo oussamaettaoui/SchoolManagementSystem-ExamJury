@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SchoolManagementSystem.Domain.Dtos.DayOrderModelDtos;
 using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.MeetingFeature.Command.Commands
@@ -10,5 +11,6 @@ namespace SchoolManagementSystem.Application.Features.MeetingFeature.Command.Com
         public string? Location { get; set; }
         public MeetingType Type { get; set; }
         public Guid JuryId { get; set; }
+        public List<AddDayOrderModel>? AddDayOrderModels  { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Ha
                     return Result.NotFound;
                 }
                 _mapper.Map(request, dayOrder);
-                Result result = await _unitOfService.DayOrderService.EditDayOrderAsync(dayOrder);
+                Result result = await _unitOfService.DayOrderService.EditDayOrderAsync(dayOrder,request.DocumentFile);
                 if (result == Result.Success)
                 {
                     return Result.Success;

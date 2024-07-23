@@ -19,7 +19,7 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Ha
         {
             try
             {
-                Result result = await _unitOfService.DayOrderService.AddDayOrderAsync(_mapper.Map<DayOrder>(request));
+                Result result = await _unitOfService.DayOrderService.AddDayOrderAsync(_mapper.Map<DayOrder>(request),request.DocumentFile);
                 if (result == Result.Success)
                 {
                     return Result.Success;

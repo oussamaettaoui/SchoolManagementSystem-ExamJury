@@ -7,6 +7,7 @@ namespace SchoolManagementSystem.Domain.Entities
     public class DayOrderModel : Base
     {
         public string? DayOrderTitle { get; set; }
+        public string? DocumentPath { get; set; }
         public Guid IdMetting { get; set; }
         [JsonIgnore]
         public Meeting? Meeting { get; set; }

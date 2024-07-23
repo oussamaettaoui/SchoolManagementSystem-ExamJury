@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SchoolManagementSystem.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialkkk : Migration
+    public partial class ini : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,6 +19,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DayOrderTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocumentPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -114,13 +115,35 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "DayOrderModel",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DayOrderTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocumentPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdMetting = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DayOrderModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DayOrderModel_Meeting_IdMetting",
+                        column: x => x.IdMetting,
+                        principalTable: "Meeting",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Juries",
                 columns: new[] { "Id", "CreatedAt", "JuryName", "SectorId", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("40a95404-6f87-4dd6-804e-47b2f79cdf97"), new DateTime(2024, 7, 22, 10, 53, 42, 899, DateTimeKind.Utc).AddTicks(940), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), new DateTime(2024, 7, 22, 10, 53, 42, 899, DateTimeKind.Utc).AddTicks(940) },
-                    { new Guid("ab9e72c7-ef33-4c22-84c6-318c93a5c21b"), new DateTime(2024, 7, 22, 10, 53, 42, 899, DateTimeKind.Utc).AddTicks(930), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), new DateTime(2024, 7, 22, 10, 53, 42, 899, DateTimeKind.Utc).AddTicks(930) }
+                    { new Guid("42b598ec-cfa5-4455-b990-3902acc43852"), new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8033), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8037) },
+                    { new Guid("5a19e0e1-ac97-4f4c-a3fd-41167438f5a1"), new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8057), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8057) }
                 });
 
             migrationBuilder.InsertData(
@@ -128,11 +151,16 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Role", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("2ad6957a-3aac-4586-b5ef-4093301b734e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre représentant l’Administration", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("355dff87-fd85-416e-b457-6250bb156cc2"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre Professionnel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("4c03e145-5fc2-4f8e-9369-2a0279ca130d"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre de l’établissement", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f3348cbe-4578-4495-8782-d3d483d42fad"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Président", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("2bc43749-192c-4a65-a8bb-164e17100527"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre Professionnel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("53cdfc4d-c617-403b-9457-4bd704535c0e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Président", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("7a49db16-39c3-40bb-bcfd-2e683f294f59"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre de l’établissement", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("b6080122-f6cf-4cd8-a576-c298fa246cb4"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre représentant l’Administration", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DayOrderModel_IdMetting",
+                table: "DayOrderModel",
+                column: "IdMetting");
 
             migrationBuilder.CreateIndex(
                 name: "IX_JuryMembers_JuryId",
@@ -153,6 +181,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "DayOrderModel");
+
             migrationBuilder.DropTable(
                 name: "dayOrders");
 

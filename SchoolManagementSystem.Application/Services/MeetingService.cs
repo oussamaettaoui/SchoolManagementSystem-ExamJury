@@ -37,7 +37,7 @@ namespace SchoolManagementSystem.Application.Services
             }
             catch(Exception ex)
             {
-                return Result.Failure;
+                throw new Exception("Error Message : "+ex.ToString());
             }
         }
         public async Task<Result> UpdateMeetingAsync(Meeting meeting)
