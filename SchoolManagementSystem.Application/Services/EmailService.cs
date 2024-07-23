@@ -24,10 +24,11 @@ namespace SchoolManagementSystem.Application.Services
             email.Body = new TextPart(TextFormat.Html) { Text = emailDto.Body};
             //
             var username = _config.GetValue<string>("SMTP_Infos:EmailUserName");
+            var host = _config.GetValue<string>("SMTP_Infos:EmailHost");
             var password = _config.GetValue<string>("SMTP_Infos:EmailPassword");
             //
             using var smtp = new SmtpClient();
-            smtp.Connect(_config.GetSection("EmailHost").Value, 587,SecureSocketOptions.StartTls);
+            smtp.Connect(host, 587,SecureSocketOptions.StartTls);
             smtp.Authenticate(username,password);
             smtp.Send(email);
             smtp.Disconnect(true);

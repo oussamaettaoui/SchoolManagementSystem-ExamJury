@@ -49,7 +49,8 @@ namespace SchoolManagementSystem.Infrastructure.Data
                 m.HasKey(m => m.Id);
                 m.HasMany(u => u.DayOrderModels)
                     .WithOne(u => u.Meeting)
-                    .HasForeignKey(u => u.IdMetting);
+                    .HasForeignKey(u => u.IdMetting)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
             modelBuilder.Entity<Jury>(j => {
                 j.HasKey(x=>x.Id);
