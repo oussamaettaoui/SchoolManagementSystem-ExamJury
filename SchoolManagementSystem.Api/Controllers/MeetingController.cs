@@ -1,11 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Commands;
 using SchoolManagementSystem.Application.Features.MeetingFeature.Command.Commands;
 using SchoolManagementSystem.Application.Features.MeetingFeature.Query.Queries;
 using SchoolManagementSystem.Domain.Dtos.MeetingDtos;
 using SchoolManagementSystem.Domain.Entities;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SchoolManagementSystem.Api.Controllers
 {
@@ -64,6 +62,7 @@ namespace SchoolManagementSystem.Api.Controllers
                 return NotFound("Meeting Not Found");
             }
             return BadRequest("Meeting not updated");
+  
         }
     }
 }
