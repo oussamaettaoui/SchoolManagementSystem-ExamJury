@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using SchoolManagementSystem.Application.Interfaces;
 using SchoolManagementSystem.Application.IServices;
 using SchoolManagementSystem.Domain.Entities;
@@ -10,12 +11,14 @@ namespace SchoolManagementSystem.Application.Services
         #region Props
         private readonly IUnitOfWork _uow;
         private readonly IBlobService _blobService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         #endregion
         #region Constructor
-        public JuryMemberService(IUnitOfWork uow, IBlobService blobService)
+        public JuryMemberService(IUnitOfWork uow, IBlobService blobService, IHttpContextAccessor httpContextAccessor)
         {
             _uow = uow;
             _blobService = blobService;
+            _httpContextAccessor = httpContextAccessor;
         }
         #endregion
         #region Methods
@@ -37,8 +40,22 @@ namespace SchoolManagementSystem.Application.Services
             try
             {
                 juryMember.Id = Guid.NewGuid();
-                string imgUrl = await _blobService.UploadAsync(juryMember.Id,ImgFile); 
-                juryMember.ProfileImg = imgUrl;
+                ClaimsPrincipal? user = _httpContextAccessor.HttpContext?.User;
+                string? userRole = user?.FindFirst(ClaimTypes.Role)?.Value;
+                Status status = userRole switch { 
+                    "director" => Status.Valid,
+                    "assistant" => Status.InProgress,
+                    _ => Status.Invalid
+                };
+                juryMember.Status = status;
+                if (ImgFile is not null){
+                    string imgUrl = await _blobService.UploadAsync(juryMember.Id, ImgFile);
+                    juryMember.ProfileImg = imgUrl;
+                }
+                else
+                {
+                    juryMember.ProfileImg = "string";
+                }
                 await _uow.JuryMemberRepository.CreateAsync(juryMember);
                 await _uow.CommitAsync();
                 return "Success";
@@ -53,12 +70,12 @@ namespace SchoolManagementSystem.Application.Services
         {
             try
             {
-                if (!string.IsNullOrEmpty(juryMember.ProfileImg))
+                if (ImgFile is not null && !string.IsNullOrEmpty(juryMember.ProfileImg))
                 {
                     _blobService.DeleteAsync(juryMember.Id.ToString());
+                    string imgUrl = await _blobService.UploadAsync(juryMember.Id, ImgFile);
+                    juryMember.ProfileImg = imgUrl;
                 }
-                string imgUrl = await _blobService.UploadAsync(juryMember.Id, ImgFile);
-                juryMember.ProfileImg = imgUrl;
                 juryMember.UpdatedAt = DateTime.UtcNow;
                 await _uow.JuryMemberRepository.UpdateAsync(juryMember);
                 await _uow.CommitAsync();

@@ -36,8 +36,15 @@ namespace SchoolManagementSystem.Application.Services
             try
             {
                 dayOrder.Id = Guid.NewGuid();
-                string docPath = await _blobService.UploadAsync(dayOrder.Id, DocumentFile);
-                dayOrder.DocumentPath = docPath;
+                if (DocumentFile != null)
+                {
+                    string docPath = await _blobService.UploadAsync(dayOrder.Id, DocumentFile);
+                    dayOrder.DocumentPath = docPath;
+                }
+                else
+                {
+                    dayOrder.DocumentPath = "string";
+                }
                 await _unitOfWork.DayOrderRepository.CreateAsync(dayOrder);
                 await _unitOfWork.CommitAsync();
                 return Result.Success;
@@ -54,9 +61,13 @@ namespace SchoolManagementSystem.Application.Services
                 if (!string.IsNullOrEmpty(dayOrder.DocumentPath))
                 {
                     _blobService.DeleteAsync(dayOrder.Id.ToString());
+                    string docPath = await _blobService.UploadAsync(dayOrder.Id, DocumentFile);
+                    dayOrder.DocumentPath = docPath;
                 }
-                string docPath = await _blobService.UploadAsync(dayOrder.Id,DocumentFile);
-                dayOrder.DocumentPath = docPath;
+                else
+                {
+                    dayOrder.DocumentPath = "string";
+                }
                 dayOrder.UpdatedAt = DateTime.UtcNow;
                 await _unitOfWork.DayOrderRepository.UpdateAsync(dayOrder);
                 await _unitOfWork.CommitAsync();

@@ -2,6 +2,7 @@
 {
     public enum Status
     {
+        InProgress,
         Valid,
         Invalid
     }

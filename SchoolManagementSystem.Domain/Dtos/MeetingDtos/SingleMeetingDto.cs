@@ -13,5 +13,6 @@ namespace SchoolManagementSystem.Domain.Dtos.MeetingDtos
         public MeetingType Type { get; set; }
         public SingleJuryDto? Jury { get; set; }
         public List<AddDayOrderModel>? DayOrderModels { get; set; }
+        public Status Status { get; set; }
     }
 }

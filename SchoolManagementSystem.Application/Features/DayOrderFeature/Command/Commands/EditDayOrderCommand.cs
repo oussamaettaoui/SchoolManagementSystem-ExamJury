@@ -8,6 +8,7 @@ namespace SchoolManagementSystem.Application.Features.DayOrderFeature.Command.Co
     {
         public Guid DayOrderId { get; set; }
         public string? DayOrderTitle { get; set; }
+        public DocumentType DocType { get; set; }
         public IFormFile? DocumentFile { get; set; }
     }
 }

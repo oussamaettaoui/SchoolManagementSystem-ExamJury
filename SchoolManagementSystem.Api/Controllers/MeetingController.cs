@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.Application.Features.MeetingFeature.Command.Commands;
 using SchoolManagementSystem.Application.Features.MeetingFeature.Query.Queries;
@@ -9,6 +10,7 @@ namespace SchoolManagementSystem.Api.Controllers
 {
     [Route("api/Meeting")]
     [ApiController]
+    [Authorize(Policy = "DirectorOrAssistantPolicy")]
     public class MeetingController : ControllerBase
     {
         private readonly IMediator _mediator;

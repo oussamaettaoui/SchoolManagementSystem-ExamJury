@@ -1,4 +1,5 @@
 ﻿using SchoolManagementSystem.Domain.Dtos.JuryMemberRoleDtos;
+using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
 {
@@ -13,5 +14,6 @@ namespace SchoolManagementSystem.Domain.Dtos.JuryMemberDtos
         public string? LatestDiploma { get; set; }
         public string? ProfileImg { get; set; }
         public JuryMemberRoleDto? Role { get; set; }
+        public Status Status { get; set; }
     }
 }   

@@ -12,6 +12,7 @@ namespace SchoolManagementSystem.Domain.Dtos.MeetingDtos
         public string? Location { get; set; }
         public MeetingType Type { get; set; }
         public JuryDto? Jury { get; set; }
-        
+        public Status Status { get; set; }
+
     }
 }

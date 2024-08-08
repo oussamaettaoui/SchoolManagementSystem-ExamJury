@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Commands;
 using SchoolManagementSystem.Application.Features.JuryMemberFeature.Query.Queries;
@@ -7,6 +8,7 @@ using SchoolManagementSystem.Domain.Dtos.JuryMemberDtos;
 namespace SchoolManagementSystem.Api.Controllers
 {
     [Route("api/JuryMember")]
+    [Authorize(Policy = "DirectorOrAssistantPolicy")]
     [ApiController]
     public class JuryMemberController : ControllerBase
     {

@@ -1,4 +1,6 @@
-﻿using SchoolManagementSystem.Application.Interfaces;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using SchoolManagementSystem.Application.Interfaces;
 using SchoolManagementSystem.Application.IServices;
 using SchoolManagementSystem.Domain.Entities;
 
@@ -8,11 +10,13 @@ namespace SchoolManagementSystem.Application.Services
     {
         #region Props
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         #endregion
         #region Constructor
-        public MeetingService(IUnitOfWork unitOfWork)
+        public MeetingService(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor = null)
         {
             _unitOfWork = unitOfWork;
+            _httpContextAccessor = httpContextAccessor;
         }
         #endregion
         #region Methods
@@ -31,6 +35,15 @@ namespace SchoolManagementSystem.Application.Services
             try
             {
                 meeting.Id = Guid.NewGuid();
+                ClaimsPrincipal? user = _httpContextAccessor.HttpContext?.User;
+                string? userRole = user?.FindFirst(ClaimTypes.Role)?.Value;
+                Status status = userRole switch
+                {
+                    "director" => Status.Valid,
+                    "assistant" => Status.InProgress,
+                    _ => Status.Invalid
+                };
+                meeting.Status = status;
                 await _unitOfWork.MeetingRepository.CreateAsync(meeting);
                 await _unitOfWork.CommitAsync();
                 return Result.Success;

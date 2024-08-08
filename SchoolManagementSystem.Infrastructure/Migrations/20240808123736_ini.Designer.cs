@@ -12,7 +12,7 @@ using SchoolManagementSystem.Infrastructure.Data;
 namespace SchoolManagementSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240722220358_ini")]
+    [Migration("20240808123736_ini")]
     partial class ini
     {
         /// <inheritdoc />
@@ -37,8 +37,17 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<string>("DayOrderTitle")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DocType")
+                        .HasColumnType("int");
+
                     b.Property<string>("DocumentPath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasTable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -60,11 +69,20 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<string>("DayOrderTitle")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DocType")
+                        .HasColumnType("int");
+
                     b.Property<string>("DocumentPath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("HasTable")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("IdMetting")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -91,6 +109,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<Guid>("SectorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -101,19 +122,21 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("42b598ec-cfa5-4455-b990-3902acc43852"),
-                            CreatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8033),
+                            Id = new Guid("22cfabf7-b6ce-4c9d-a5ce-998f6f9c469a"),
+                            CreatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7212),
                             JuryName = "AGC Jury",
                             SectorId = new Guid("216a893d-740b-47bd-a689-065170b33437"),
-                            UpdatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8037)
+                            Status = 0,
+                            UpdatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7216)
                         },
                         new
                         {
-                            Id = new Guid("5a19e0e1-ac97-4f4c-a3fd-41167438f5a1"),
-                            CreatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8057),
+                            Id = new Guid("545bec3c-c1ac-48ef-903a-b9a8ca030496"),
+                            CreatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7224),
                             JuryName = "TIC Jury",
                             SectorId = new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"),
-                            UpdatedAt = new DateTime(2024, 7, 22, 22, 3, 57, 695, DateTimeKind.Utc).AddTicks(8057)
+                            Status = 0,
+                            UpdatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7225)
                         });
                 });
 
@@ -150,6 +173,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -177,6 +203,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -187,30 +216,34 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("53cdfc4d-c617-403b-9457-4bd704535c0e"),
+                            Id = new Guid("a1bca35c-189f-4aaf-87f7-793b6dcb4940"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Président",
+                            Status = 0,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("2bc43749-192c-4a65-a8bb-164e17100527"),
+                            Id = new Guid("442dedac-fcc6-4f83-817d-4d5671977a91"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre Professionnel",
+                            Status = 0,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("7a49db16-39c3-40bb-bcfd-2e683f294f59"),
+                            Id = new Guid("805fe02a-2eb3-4083-b899-02be9b139480"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre de l’établissement",
+                            Status = 0,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("b6080122-f6cf-4cd8-a576-c298fa246cb4"),
+                            Id = new Guid("5badea94-1b12-4deb-bf35-5197370a6155"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Membre représentant l’Administration",
+                            Status = 0,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -232,6 +265,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
