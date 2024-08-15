@@ -36,6 +36,7 @@ namespace SchoolManagementSystem.Application.Services
             try
             {
                 dayOrder.Id = Guid.NewGuid();
+                dayOrder.CreatedAt = DateTime.UtcNow;
                 if (DocumentFile != null)
                 {
                     string docPath = await _blobService.UploadAsync(dayOrder.Id, DocumentFile);

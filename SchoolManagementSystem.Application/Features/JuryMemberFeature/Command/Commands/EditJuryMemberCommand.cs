@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Commands
 {
-    public class EditJuryMemberCommand : IRequest<string>
+    public class EditJuryMemberCommand : IRequest<Result>
     {
         public  Guid JuryMemberId { get; set; }
         public string? FirstName { get; set; }

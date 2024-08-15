@@ -6,7 +6,7 @@ using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Handlers
 {
-    public class EditJuryMemberCommandHandler : IRequestHandler<EditJuryMemberCommand, string>
+    public class EditJuryMemberCommandHandler : IRequestHandler<EditJuryMemberCommand, Result>
     {
         private readonly IUnitOfService _uos;
         private readonly IMapper _mapper;
@@ -15,21 +15,28 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
             _uos = uos;
             _mapper = mapper;
         }
-        public async Task<string> Handle(EditJuryMemberCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(EditJuryMemberCommand request, CancellationToken cancellationToken)
         {
-            JuryMember juryMember = await _uos.JuryMemberService.GetJuryMemberByIdAsync(request.JuryMemberId);
-            if (juryMember == null)
+            try
             {
-                return "Jury Member Not Found";
-            }
-            _mapper.Map(request, juryMember);
+                JuryMember juryMember = await _uos.JuryMemberService.GetJuryMemberByIdAsync(request.JuryMemberId);
+                if (juryMember is null)
+                {
+                    return Result.NotFound;
+                }
+                _mapper.Map(request, juryMember);
 
-            string result = await _uos.JuryMemberService.EditJuryMemberAsync(juryMember, request.ImgFile);
-            if (result == "Success")
-            {
-                return "Jury Member Updated Successfully";
+                Result result = await _uos.JuryMemberService.EditJuryMemberAsync(juryMember, request.ImgFile);
+                if (result == Result.Success)
+                {
+                    return Result.Success;
+                }
+                return Result.Failure;
             }
-            return "Error Updating Deleting";
+            catch (Exception ex)
+            {
+                throw new Exception($"Error Handler : {ex.ToString()}");
+            }
         }
     }
 }

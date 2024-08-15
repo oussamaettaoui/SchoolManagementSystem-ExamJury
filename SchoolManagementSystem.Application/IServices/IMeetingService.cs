@@ -9,5 +9,6 @@ namespace SchoolManagementSystem.Application.IServices
         Task<Result> AddMeetingAsync(Meeting meeting);
         Task<Result> UpdateMeetingAsync(Meeting meeting);
         Task<Result> DeleteMeetingAsync(Meeting meeting);
+        Task<Result> ValidateMeetingAsync(Meeting meeting);
     }
 }

@@ -6,7 +6,7 @@ using SchoolManagementSystem.Domain.Entities;
 
 namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.Handlers
 {
-    public class AddJuryMemberCommandHandler : IRequestHandler<AddJuryMemberCommand, string>
+    public class AddJuryMemberCommandHandler : IRequestHandler<AddJuryMemberCommand, Result>
     {
         private readonly IUnitOfService _uos;
         private readonly IMapper _mapper;
@@ -16,21 +16,16 @@ namespace SchoolManagementSystem.Application.Features.JuryMemberFeature.Command.
             _mapper = mapper;
         }
 
-        public async Task<string> Handle(AddJuryMemberCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(AddJuryMemberCommand request, CancellationToken cancellationToken)
         {
             try
             {
-
-                string result = await _uos.JuryMemberService.AddJuryMemberAsync(_mapper.Map<JuryMember>(request),request.ImgFile);
-                if (result == "Success")
-                {
-                    return "Jury Member Added Successfully";
-                }
-                return "Error During Adding";
+                Result result = await _uos.JuryMemberService.AddJuryMemberAsync(_mapper.Map<JuryMember>(request),request.ImgFile);
+                return Result.Success;
             }
             catch (Exception ex)
             {
-                throw new Exception("FaildInAdd handler"+ ex.ToString());
+                return Result.Failure;
             }
         }
     }

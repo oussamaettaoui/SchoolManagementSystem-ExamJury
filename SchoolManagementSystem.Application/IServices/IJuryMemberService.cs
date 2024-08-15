@@ -7,9 +7,10 @@ namespace SchoolManagementSystem.Application.IServices
     {
         Task<List<JuryMember>> GetJuryMemberListAsync();
         Task<JuryMember> GetJuryMemberByIdAsync(Guid id);
-        Task<string> AddJuryMemberAsync(JuryMember juryMember, IFormFile juryImg);
-        Task<string> EditJuryMemberAsync(JuryMember juryMember, IFormFile ImgFile);
-        Task<string> DeleteJuryMemberAsync(JuryMember juryMember);
+        Task<Result> AddJuryMemberAsync(JuryMember juryMember, IFormFile juryImg);
+        Task<Result> EditJuryMemberAsync(JuryMember juryMember, IFormFile ImgFile);
+        Task<Result> DeleteJuryMemberAsync(JuryMember juryMember);
+        Task<Result> ValidateJuryMemberAsync(JuryMember juryMamber);
 
     }
 }

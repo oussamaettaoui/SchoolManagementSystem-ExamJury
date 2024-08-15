@@ -21,22 +21,34 @@ namespace SchoolManagementSystem.Infrastructure.Data
                     new JuryMemberRole
                     {
                         Id = Guid.NewGuid(),
-                        Role = "Président"
+                        Role = "Président",
+                        Status = Status.Valid,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
                     },
                     new JuryMemberRole
                     {
                         Id = Guid.NewGuid(),
-                        Role = "Membre Professionnel"
+                        Role = "Membre Professionnel",
+                        Status = Status.Valid,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
                     },
                     new JuryMemberRole
                     {
                         Id = Guid.NewGuid(),
-                        Role = "Membre de l’établissement"
+                        Role = "Membre de l’établissement",
+                        Status = Status.Valid,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
                     },
                     new JuryMemberRole
                     {
                         Id = Guid.NewGuid(),
-                        Role = "Membre représentant l’Administration"
+                        Role = "Membre représentant l’Administration",
+                        Status = Status.Valid,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
                     }
                 );
             });
@@ -63,6 +75,7 @@ namespace SchoolManagementSystem.Infrastructure.Data
                         Id = Guid.NewGuid(),
                         JuryName = "AGC Jury",
                         SectorId = Guid.Parse("216a893d-740b-47bd-a689-065170b33437"),
+                        Status = Status.Valid,
                         CreatedAt = DateTime.UtcNow,
                         UpdatedAt = DateTime.UtcNow
                     },
@@ -71,6 +84,7 @@ namespace SchoolManagementSystem.Infrastructure.Data
                         Id = Guid.NewGuid(),
                         JuryName = "TIC Jury",
                         SectorId = Guid.Parse("0caff05b-d501-426f-948d-a841be4a1a3c"),
+                        Status = Status.Valid,
                         CreatedAt = DateTime.UtcNow,
                         UpdatedAt = DateTime.UtcNow
                     }

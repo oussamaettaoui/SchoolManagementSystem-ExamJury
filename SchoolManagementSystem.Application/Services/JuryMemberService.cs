@@ -35,7 +35,7 @@ namespace SchoolManagementSystem.Application.Services
             return jury;
         }
         // to add a new JuryMember
-        public async Task<string> AddJuryMemberAsync(JuryMember juryMember,IFormFile ImgFile)
+        public async Task<Result> AddJuryMemberAsync(JuryMember juryMember,IFormFile ImgFile)
         {
             try
             {
@@ -48,6 +48,7 @@ namespace SchoolManagementSystem.Application.Services
                     _ => Status.Invalid
                 };
                 juryMember.Status = status;
+                juryMember.CreatedAt = DateTime.UtcNow;
                 if (ImgFile is not null){
                     string imgUrl = await _blobService.UploadAsync(juryMember.Id, ImgFile);
                     juryMember.ProfileImg = imgUrl;
@@ -58,15 +59,15 @@ namespace SchoolManagementSystem.Application.Services
                 }
                 await _uow.JuryMemberRepository.CreateAsync(juryMember);
                 await _uow.CommitAsync();
-                return "Success";
+                return Result.Success;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
+                return Result.Failure;
             }
         }
         // to edit a specific JuryMember
-        public async Task<string> EditJuryMemberAsync(JuryMember juryMember, IFormFile ImgFile)
+        public async Task<Result> EditJuryMemberAsync(JuryMember juryMember, IFormFile ImgFile)
         {
             try
             {
@@ -79,23 +80,45 @@ namespace SchoolManagementSystem.Application.Services
                 juryMember.UpdatedAt = DateTime.UtcNow;
                 await _uow.JuryMemberRepository.UpdateAsync(juryMember);
                 await _uow.CommitAsync();
-                return "Success";
+                return Result.Success;
             }
             catch(Exception ex)
             {
-                throw new Exception("Error");
+                return Result.Failure;
             }
         }
         // to delete a specific JuryMember
-        public async Task<string> DeleteJuryMemberAsync(JuryMember juryMember)
+        public async Task<Result> DeleteJuryMemberAsync(JuryMember juryMember)
         {
-            if (!string.IsNullOrEmpty(juryMember.ProfileImg))
+            try
             {
-                _blobService.DeleteAsync(juryMember.Id.ToString());
+                if (!string.IsNullOrEmpty(juryMember.ProfileImg))
+                {
+                    _blobService.DeleteAsync(juryMember.Id.ToString());
+                }
+                await _uow.JuryMemberRepository.RemoveAsync(juryMember);
+                await _uow.CommitAsync();
+                return Result.Success;
             }
-            await _uow.JuryMemberRepository.RemoveAsync(juryMember);
-            await _uow.CommitAsync();
-            return "Success";
+            catch (Exception ex)
+            {
+                return Result.Failure;
+            }
+        }
+
+        public async Task<Result> ValidateJuryMemberAsync(JuryMember juryMamber)
+        {
+            try
+            {
+                juryMamber.Status = Status.Valid;
+                juryMamber.ValidateAt = DateTime.UtcNow;
+                await _uow.JuryMemberRepository.UpdateAsync(juryMamber);
+                await _uow.CommitAsync();
+                return Result.Success;
+            }catch (Exception ex)
+            {
+                return Result.Failure;
+            }
         }
         #endregion
     }

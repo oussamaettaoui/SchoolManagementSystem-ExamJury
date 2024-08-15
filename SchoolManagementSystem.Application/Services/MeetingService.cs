@@ -43,6 +43,7 @@ namespace SchoolManagementSystem.Application.Services
                     "assistant" => Status.InProgress,
                     _ => Status.Invalid
                 };
+                meeting.CreatedAt = DateTime.UtcNow;
                 meeting.Status = status;
                 await _unitOfWork.MeetingRepository.CreateAsync(meeting);
                 await _unitOfWork.CommitAsync();
@@ -57,6 +58,7 @@ namespace SchoolManagementSystem.Application.Services
         {
             try
             {
+                meeting.UpdatedAt = DateTime.UtcNow;
                 await _unitOfWork.MeetingRepository.UpdateAsync(meeting);
                 await _unitOfWork.CommitAsync();
                 return Result.Success;
@@ -76,6 +78,22 @@ namespace SchoolManagementSystem.Application.Services
                 return Result.Success;
             }
             catch (Exception ex)
+            {
+                return Result.Failure;
+            }
+        }
+
+        public async Task<Result> ValidateMeetingAsync(Meeting meeting)
+        {
+            try
+            {
+                meeting.Status = Status.Valid;
+                meeting.ValidateAt = DateTime.UtcNow;
+                await _unitOfWork.MeetingRepository.UpdateAsync(meeting);
+                await _unitOfWork.CommitAsync();
+                return Result.Success;
+            }
+            catch(Exception ex)
             {
                 return Result.Failure;
             }
