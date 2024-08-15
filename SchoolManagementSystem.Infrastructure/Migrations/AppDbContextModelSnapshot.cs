@@ -49,6 +49,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ValidateAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("dayOrders");
@@ -84,6 +87,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ValidateAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IdMetting");
@@ -112,6 +118,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ValidateAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Juries");
@@ -119,21 +128,23 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("22cfabf7-b6ce-4c9d-a5ce-998f6f9c469a"),
-                            CreatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7212),
+                            Id = new Guid("f9774f35-0eac-430a-9d69-6277dc9f53c8"),
+                            CreatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6967),
                             JuryName = "AGC Jury",
                             SectorId = new Guid("216a893d-740b-47bd-a689-065170b33437"),
-                            Status = 0,
-                            UpdatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7216)
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6969),
+                            ValidateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("545bec3c-c1ac-48ef-903a-b9a8ca030496"),
-                            CreatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7224),
+                            Id = new Guid("e40e5ef1-65cc-4c1b-9908-41972efea9c6"),
+                            CreatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6976),
                             JuryName = "TIC Jury",
                             SectorId = new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"),
-                            Status = 0,
-                            UpdatedAt = new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7225)
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6977),
+                            ValidateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -176,6 +187,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ValidateAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("YearOfExperience")
                         .HasColumnType("int");
 
@@ -206,6 +220,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ValidateAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("JuryMemberRoles");
@@ -213,35 +230,39 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a1bca35c-189f-4aaf-87f7-793b6dcb4940"),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("01e40292-e7b1-4809-8a69-e048429dc11b"),
+                            CreatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2341),
                             Role = "Président",
-                            Status = 0,
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2345),
+                            ValidateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("442dedac-fcc6-4f83-817d-4d5671977a91"),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("b3a39437-5f0c-464e-b3d7-93640ce1a910"),
+                            CreatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2350),
                             Role = "Membre Professionnel",
-                            Status = 0,
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2351),
+                            ValidateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("805fe02a-2eb3-4083-b899-02be9b139480"),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("83f5c7f2-e830-4b52-8dc2-ffab66638b68"),
+                            CreatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2354),
                             Role = "Membre de l’établissement",
-                            Status = 0,
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2355),
+                            ValidateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("5badea94-1b12-4deb-bf35-5197370a6155"),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("7ea628a7-2333-4310-b9e0-7cb0484adb71"),
+                            CreatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2358),
                             Role = "Membre représentant l’Administration",
-                            Status = 0,
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2359),
+                            ValidateAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -273,6 +294,9 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ValidateAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

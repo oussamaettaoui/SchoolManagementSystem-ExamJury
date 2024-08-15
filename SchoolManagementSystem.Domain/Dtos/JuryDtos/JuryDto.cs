@@ -8,6 +8,5 @@ namespace SchoolManagementSystem.Domain.Dtos.JuryDtos
         public Guid JuryId { get; set; }
         public string? JuryName { get; set; }
         public Guid SectorId { get; set; }
-        public Status Status { get; set; }
     }
 }

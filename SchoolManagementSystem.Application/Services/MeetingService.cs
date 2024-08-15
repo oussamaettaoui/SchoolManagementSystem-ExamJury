@@ -43,6 +43,10 @@ namespace SchoolManagementSystem.Application.Services
                     "assistant" => Status.InProgress,
                     _ => Status.Invalid
                 };
+                foreach (var dayOrder in meeting.DayOrderModels)
+                {
+                    dayOrder.Id = Guid.NewGuid();
+                }
                 meeting.CreatedAt = DateTime.UtcNow;
                 meeting.Status = status;
                 await _unitOfWork.MeetingRepository.CreateAsync(meeting);

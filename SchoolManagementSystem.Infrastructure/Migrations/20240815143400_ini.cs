@@ -24,6 +24,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     DocType = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValidateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -40,6 +41,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     SectorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValidateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -55,6 +57,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValidateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -74,6 +77,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     JuryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValidateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -103,6 +107,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     JuryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValidateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -134,6 +139,7 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
                     IdMetting = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValidateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -149,22 +155,22 @@ namespace SchoolManagementSystem.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Juries",
-                columns: new[] { "Id", "CreatedAt", "JuryName", "SectorId", "Status", "UpdatedAt" },
+                columns: new[] { "Id", "CreatedAt", "JuryName", "SectorId", "Status", "UpdatedAt", "ValidateAt" },
                 values: new object[,]
                 {
-                    { new Guid("22cfabf7-b6ce-4c9d-a5ce-998f6f9c469a"), new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7212), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), 0, new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7216) },
-                    { new Guid("545bec3c-c1ac-48ef-903a-b9a8ca030496"), new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7224), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), 0, new DateTime(2024, 8, 8, 12, 37, 34, 881, DateTimeKind.Utc).AddTicks(7225) }
+                    { new Guid("e40e5ef1-65cc-4c1b-9908-41972efea9c6"), new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6976), "TIC Jury", new Guid("0caff05b-d501-426f-948d-a841be4a1a3c"), 1, new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6977), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("f9774f35-0eac-430a-9d69-6277dc9f53c8"), new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6967), "AGC Jury", new Guid("216a893d-740b-47bd-a689-065170b33437"), 1, new DateTime(2024, 8, 15, 14, 33, 58, 766, DateTimeKind.Utc).AddTicks(6969), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "JuryMemberRoles",
-                columns: new[] { "Id", "CreatedAt", "Role", "Status", "UpdatedAt" },
+                columns: new[] { "Id", "CreatedAt", "Role", "Status", "UpdatedAt", "ValidateAt" },
                 values: new object[,]
                 {
-                    { new Guid("442dedac-fcc6-4f83-817d-4d5671977a91"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre Professionnel", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("5badea94-1b12-4deb-bf35-5197370a6155"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre représentant l’Administration", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("805fe02a-2eb3-4083-b899-02be9b139480"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Membre de l’établissement", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("a1bca35c-189f-4aaf-87f7-793b6dcb4940"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Président", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("01e40292-e7b1-4809-8a69-e048429dc11b"), new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2341), "Président", 1, new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2345), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("7ea628a7-2333-4310-b9e0-7cb0484adb71"), new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2358), "Membre représentant l’Administration", 1, new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2359), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("83f5c7f2-e830-4b52-8dc2-ffab66638b68"), new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2354), "Membre de l’établissement", 1, new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2355), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("b3a39437-5f0c-464e-b3d7-93640ce1a910"), new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2350), "Membre Professionnel", 1, new DateTime(2024, 8, 15, 14, 33, 58, 765, DateTimeKind.Utc).AddTicks(2351), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
